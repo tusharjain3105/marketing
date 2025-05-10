@@ -14,9 +14,12 @@ const nextConfig: NextConfig = {
     dynamicIO: true,
   },
   compiler: {
-    removeConsole: {
-      exclude: ["error", "info", "warn"],
-    },
+    removeConsole:
+      process.env.NODE_ENV === "production"
+        ? {
+            exclude: ["error", "info", "warn"],
+          }
+        : false,
   },
 };
 

@@ -5,7 +5,7 @@ import type { ComponentProps } from "react";
 
 const NavLink = (
   props: ComponentProps<typeof Link> & {
-    href: `/${string}`;
+    href: string;
     mode?: "exact" | "prefix";
   },
 ) => {

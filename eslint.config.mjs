@@ -27,7 +27,10 @@ const eslintConfig = [
         { prefer: "type-imports" }
       ]
     }
-  })
+  }),
+  {
+    ignores: ["prisma/generated/**", "components/ui/**"]
+  }
 ];
 
 export default eslintConfig;
