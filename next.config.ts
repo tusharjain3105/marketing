@@ -1,7 +1,23 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  images: {
+    remotePatterns: [
+      {
+        hostname: "**",
+      },
+    ],
+  },
+  experimental: {
+    reactCompiler: true,
+    ppr: true,
+    dynamicIO: true,
+  },
+  compiler: {
+    removeConsole: {
+      exclude: ["error", "info", "warn"],
+    },
+  },
 };
 
 export default nextConfig;
