@@ -46,6 +46,7 @@ export const createActionHandler = <Args, Result>(
     if (tag) {
       console.log(`[Executing] ${tag}`);
     }
+
     try {
       // Validate input if schema is provided
       const validatedArgs = validationSchema
@@ -53,7 +54,7 @@ export const createActionHandler = <Args, Result>(
         : args;
 
       // Execute the callback with validated arguments
-      const result = await callback(validatedArgs, context);
+      const result = await callback(validatedArgs, { ...context });
 
       return [undefined, result];
     } catch (error) {

@@ -135,6 +135,14 @@ exports.Prisma.MediaScalarFieldEnum = {
   updatedAt: "updatedAt",
 };
 
+exports.Prisma.NewsletterScalarFieldEnum = {
+  id: "id",
+  email: "email",
+  createdAt: "createdAt",
+  updatedAt: "updatedAt",
+  active: "active",
+};
+
 exports.Prisma.SortOrder = {
   asc: "asc",
   desc: "desc",
@@ -167,6 +175,7 @@ exports.MediaType = exports.$Enums.MediaType = {
 exports.Prisma.ModelName = {
   User: "User",
   Media: "Media",
+  Newsletter: "Newsletter",
 };
 
 /**

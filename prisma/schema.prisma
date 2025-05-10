@@ -39,6 +39,8 @@ model User {
   verificationMethod VerificationMethod?
   createdAt          DateTime            @default(now())
   updatedAt          DateTime            @updatedAt
+
+  // Flags
 }
 
 model Media {
@@ -48,4 +50,12 @@ model Media {
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
   User      User[]
+}
+
+model Newsletter {
+  id        String    @id @default(uuid())
+  email     String    @unique
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  active    Boolean   @default(true)
 }
