@@ -1072,6 +1072,42 @@ export namespace Prisma {
    */
 
   /**
+   * Count Type MediaCountOutputType
+   */
+
+  export type MediaCountOutputType = {
+    User: number;
+  };
+
+  export type MediaCountOutputTypeSelect<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
+    User?: boolean | MediaCountOutputTypeCountUserArgs;
+  };
+
+  // Custom InputTypes
+  /**
+   * MediaCountOutputType without action
+   */
+  export type MediaCountOutputTypeDefaultArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
+    /**
+     * Select specific fields to fetch from the MediaCountOutputType
+     */
+    select?: MediaCountOutputTypeSelect<ExtArgs> | null;
+  };
+
+  /**
+   * MediaCountOutputType without action
+   */
+  export type MediaCountOutputTypeCountUserArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
+    where?: UserWhereInput;
+  };
+
+  /**
    * Models
    */
 
@@ -1090,7 +1126,7 @@ export namespace Prisma {
     email: string | null;
     name: string | null;
     password: string | null;
-    avatar: string | null;
+    avatarId: string | null;
     verificationMethod: $Enums.VerificationMethod | null;
     createdAt: Date | null;
     updatedAt: Date | null;
@@ -1101,7 +1137,7 @@ export namespace Prisma {
     email: string | null;
     name: string | null;
     password: string | null;
-    avatar: string | null;
+    avatarId: string | null;
     verificationMethod: $Enums.VerificationMethod | null;
     createdAt: Date | null;
     updatedAt: Date | null;
@@ -1112,7 +1148,7 @@ export namespace Prisma {
     email: number;
     name: number;
     password: number;
-    avatar: number;
+    avatarId: number;
     verificationMethod: number;
     createdAt: number;
     updatedAt: number;
@@ -1124,7 +1160,7 @@ export namespace Prisma {
     email?: true;
     name?: true;
     password?: true;
-    avatar?: true;
+    avatarId?: true;
     verificationMethod?: true;
     createdAt?: true;
     updatedAt?: true;
@@ -1135,7 +1171,7 @@ export namespace Prisma {
     email?: true;
     name?: true;
     password?: true;
-    avatar?: true;
+    avatarId?: true;
     verificationMethod?: true;
     createdAt?: true;
     updatedAt?: true;
@@ -1146,7 +1182,7 @@ export namespace Prisma {
     email?: true;
     name?: true;
     password?: true;
-    avatar?: true;
+    avatarId?: true;
     verificationMethod?: true;
     createdAt?: true;
     updatedAt?: true;
@@ -1233,7 +1269,7 @@ export namespace Prisma {
     email: string;
     name: string;
     password: string | null;
-    avatar: string | null;
+    avatarId: string | null;
     verificationMethod: $Enums.VerificationMethod | null;
     createdAt: Date;
     updatedAt: Date;
@@ -1262,10 +1298,11 @@ export namespace Prisma {
       email?: boolean;
       name?: boolean;
       password?: boolean;
-      avatar?: boolean;
+      avatarId?: boolean;
       verificationMethod?: boolean;
       createdAt?: boolean;
       updatedAt?: boolean;
+      avatar?: boolean | User$avatarArgs<ExtArgs>;
     },
     ExtArgs["result"]["user"]
   >;
@@ -1278,10 +1315,11 @@ export namespace Prisma {
       email?: boolean;
       name?: boolean;
       password?: boolean;
-      avatar?: boolean;
+      avatarId?: boolean;
       verificationMethod?: boolean;
       createdAt?: boolean;
       updatedAt?: boolean;
+      avatar?: boolean | User$avatarArgs<ExtArgs>;
     },
     ExtArgs["result"]["user"]
   >;
@@ -1294,10 +1332,11 @@ export namespace Prisma {
       email?: boolean;
       name?: boolean;
       password?: boolean;
-      avatar?: boolean;
+      avatarId?: boolean;
       verificationMethod?: boolean;
       createdAt?: boolean;
       updatedAt?: boolean;
+      avatar?: boolean | User$avatarArgs<ExtArgs>;
     },
     ExtArgs["result"]["user"]
   >;
@@ -1307,7 +1346,7 @@ export namespace Prisma {
     email?: boolean;
     name?: boolean;
     password?: boolean;
-    avatar?: boolean;
+    avatarId?: boolean;
     verificationMethod?: boolean;
     createdAt?: boolean;
     updatedAt?: boolean;
@@ -1320,25 +1359,42 @@ export namespace Prisma {
     | "email"
     | "name"
     | "password"
-    | "avatar"
+    | "avatarId"
     | "verificationMethod"
     | "createdAt"
     | "updatedAt",
     ExtArgs["result"]["user"]
   >;
+  export type UserInclude<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
+    avatar?: boolean | User$avatarArgs<ExtArgs>;
+  };
+  export type UserIncludeCreateManyAndReturn<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
+    avatar?: boolean | User$avatarArgs<ExtArgs>;
+  };
+  export type UserIncludeUpdateManyAndReturn<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
+    avatar?: boolean | User$avatarArgs<ExtArgs>;
+  };
 
   export type $UserPayload<
     ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
   > = {
     name: "User";
-    objects: {};
+    objects: {
+      avatar: Prisma.$MediaPayload<ExtArgs> | null;
+    };
     scalars: $Extensions.GetPayloadResult<
       {
         id: string;
         email: string;
         name: string;
         password: string | null;
-        avatar: string | null;
+        avatarId: string | null;
         verificationMethod: $Enums.VerificationMethod | null;
         createdAt: Date;
         updatedAt: Date;
@@ -1887,6 +1943,19 @@ export namespace Prisma {
     GlobalOmitOptions = {},
   > extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise";
+    avatar<T extends User$avatarArgs<ExtArgs> = {}>(
+      args?: Subset<T, User$avatarArgs<ExtArgs>>,
+    ): Prisma__MediaClient<
+      $Result.GetResult<
+        Prisma.$MediaPayload<ExtArgs>,
+        T,
+        "findUniqueOrThrow",
+        GlobalOmitOptions
+      > | null,
+      null,
+      ExtArgs,
+      GlobalOmitOptions
+    >;
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1931,7 +2000,7 @@ export namespace Prisma {
     readonly email: FieldRef<"User", "String">;
     readonly name: FieldRef<"User", "String">;
     readonly password: FieldRef<"User", "String">;
-    readonly avatar: FieldRef<"User", "String">;
+    readonly avatarId: FieldRef<"User", "String">;
     readonly verificationMethod: FieldRef<"User", "VerificationMethod">;
     readonly createdAt: FieldRef<"User", "DateTime">;
     readonly updatedAt: FieldRef<"User", "DateTime">;
@@ -1953,6 +2022,10 @@ export namespace Prisma {
      */
     omit?: UserOmit<ExtArgs> | null;
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null;
+    /**
      * Filter, which User to fetch.
      */
     where: UserWhereUniqueInput;
@@ -1973,6 +2046,10 @@ export namespace Prisma {
      */
     omit?: UserOmit<ExtArgs> | null;
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null;
+    /**
      * Filter, which User to fetch.
      */
     where: UserWhereUniqueInput;
@@ -1992,6 +2069,10 @@ export namespace Prisma {
      * Omit specific fields from the User
      */
     omit?: UserOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null;
     /**
      * Filter, which User to fetch.
      */
@@ -2043,6 +2124,10 @@ export namespace Prisma {
      */
     omit?: UserOmit<ExtArgs> | null;
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null;
+    /**
      * Filter, which User to fetch.
      */
     where?: UserWhereInput;
@@ -2093,6 +2178,10 @@ export namespace Prisma {
      */
     omit?: UserOmit<ExtArgs> | null;
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null;
+    /**
      * Filter, which Users to fetch.
      */
     where?: UserWhereInput;
@@ -2138,6 +2227,10 @@ export namespace Prisma {
      */
     omit?: UserOmit<ExtArgs> | null;
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null;
+    /**
      * The data needed to create a User.
      */
     data: XOR<UserCreateInput, UserUncheckedCreateInput>;
@@ -2175,6 +2268,10 @@ export namespace Prisma {
      */
     data: UserCreateManyInput | UserCreateManyInput[];
     skipDuplicates?: boolean;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserIncludeCreateManyAndReturn<ExtArgs> | null;
   };
 
   /**
@@ -2191,6 +2288,10 @@ export namespace Prisma {
      * Omit specific fields from the User
      */
     omit?: UserOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null;
     /**
      * The data needed to update a User.
      */
@@ -2247,6 +2348,10 @@ export namespace Prisma {
      * Limit how many Users to update.
      */
     limit?: number;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserIncludeUpdateManyAndReturn<ExtArgs> | null;
   };
 
   /**
@@ -2263,6 +2368,10 @@ export namespace Prisma {
      * Omit specific fields from the User
      */
     omit?: UserOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null;
     /**
      * The filter to search for the User to update in case it exists.
      */
@@ -2292,6 +2401,10 @@ export namespace Prisma {
      */
     omit?: UserOmit<ExtArgs> | null;
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null;
+    /**
      * Filter which User to delete.
      */
     where: UserWhereUniqueInput;
@@ -2314,6 +2427,27 @@ export namespace Prisma {
   };
 
   /**
+   * User.avatar
+   */
+  export type User$avatarArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
+    /**
+     * Select specific fields to fetch from the Media
+     */
+    select?: MediaSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the Media
+     */
+    omit?: MediaOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MediaInclude<ExtArgs> | null;
+    where?: MediaWhereInput;
+  };
+
+  /**
    * User without action
    */
   export type UserDefaultArgs<
@@ -2327,6 +2461,10 @@ export namespace Prisma {
      * Omit specific fields from the User
      */
     omit?: UserOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null;
   };
 
   /**
@@ -2497,6 +2635,8 @@ export namespace Prisma {
       type?: boolean;
       createdAt?: boolean;
       updatedAt?: boolean;
+      User?: boolean | Media$UserArgs<ExtArgs>;
+      _count?: boolean | MediaCountOutputTypeDefaultArgs<ExtArgs>;
     },
     ExtArgs["result"]["media"]
   >;
@@ -2541,12 +2681,26 @@ export namespace Prisma {
     "id" | "url" | "type" | "createdAt" | "updatedAt",
     ExtArgs["result"]["media"]
   >;
+  export type MediaInclude<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
+    User?: boolean | Media$UserArgs<ExtArgs>;
+    _count?: boolean | MediaCountOutputTypeDefaultArgs<ExtArgs>;
+  };
+  export type MediaIncludeCreateManyAndReturn<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {};
+  export type MediaIncludeUpdateManyAndReturn<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {};
 
   export type $MediaPayload<
     ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
   > = {
     name: "Media";
-    objects: {};
+    objects: {
+      User: Prisma.$UserPayload<ExtArgs>[];
+    };
     scalars: $Extensions.GetPayloadResult<
       {
         id: string;
@@ -3100,6 +3254,17 @@ export namespace Prisma {
     GlobalOmitOptions = {},
   > extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise";
+    User<T extends Media$UserArgs<ExtArgs> = {}>(
+      args?: Subset<T, Media$UserArgs<ExtArgs>>,
+    ): Prisma.PrismaPromise<
+      | $Result.GetResult<
+          Prisma.$UserPayload<ExtArgs>,
+          T,
+          "findMany",
+          GlobalOmitOptions
+        >
+      | Null
+    >;
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3163,6 +3328,10 @@ export namespace Prisma {
      */
     omit?: MediaOmit<ExtArgs> | null;
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MediaInclude<ExtArgs> | null;
+    /**
      * Filter, which Media to fetch.
      */
     where: MediaWhereUniqueInput;
@@ -3183,6 +3352,10 @@ export namespace Prisma {
      */
     omit?: MediaOmit<ExtArgs> | null;
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MediaInclude<ExtArgs> | null;
+    /**
      * Filter, which Media to fetch.
      */
     where: MediaWhereUniqueInput;
@@ -3202,6 +3375,10 @@ export namespace Prisma {
      * Omit specific fields from the Media
      */
     omit?: MediaOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MediaInclude<ExtArgs> | null;
     /**
      * Filter, which Media to fetch.
      */
@@ -3253,6 +3430,10 @@ export namespace Prisma {
      */
     omit?: MediaOmit<ExtArgs> | null;
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MediaInclude<ExtArgs> | null;
+    /**
      * Filter, which Media to fetch.
      */
     where?: MediaWhereInput;
@@ -3303,6 +3484,10 @@ export namespace Prisma {
      */
     omit?: MediaOmit<ExtArgs> | null;
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MediaInclude<ExtArgs> | null;
+    /**
      * Filter, which Media to fetch.
      */
     where?: MediaWhereInput;
@@ -3347,6 +3532,10 @@ export namespace Prisma {
      * Omit specific fields from the Media
      */
     omit?: MediaOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MediaInclude<ExtArgs> | null;
     /**
      * The data needed to create a Media.
      */
@@ -3401,6 +3590,10 @@ export namespace Prisma {
      * Omit specific fields from the Media
      */
     omit?: MediaOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MediaInclude<ExtArgs> | null;
     /**
      * The data needed to update a Media.
      */
@@ -3474,6 +3667,10 @@ export namespace Prisma {
      */
     omit?: MediaOmit<ExtArgs> | null;
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MediaInclude<ExtArgs> | null;
+    /**
      * The filter to search for the Media to update in case it exists.
      */
     where: MediaWhereUniqueInput;
@@ -3502,6 +3699,10 @@ export namespace Prisma {
      */
     omit?: MediaOmit<ExtArgs> | null;
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MediaInclude<ExtArgs> | null;
+    /**
      * Filter which Media to delete.
      */
     where: MediaWhereUniqueInput;
@@ -3524,6 +3725,32 @@ export namespace Prisma {
   };
 
   /**
+   * Media.User
+   */
+  export type Media$UserArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
+    /**
+     * Select specific fields to fetch from the User
+     */
+    select?: UserSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the User
+     */
+    omit?: UserOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null;
+    where?: UserWhereInput;
+    orderBy?: UserOrderByWithRelationInput | UserOrderByWithRelationInput[];
+    cursor?: UserWhereUniqueInput;
+    take?: number;
+    skip?: number;
+    distinct?: UserScalarFieldEnum | UserScalarFieldEnum[];
+  };
+
+  /**
    * Media without action
    */
   export type MediaDefaultArgs<
@@ -3537,6 +3764,10 @@ export namespace Prisma {
      * Omit specific fields from the Media
      */
     omit?: MediaOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MediaInclude<ExtArgs> | null;
   };
 
   /**
@@ -3558,7 +3789,7 @@ export namespace Prisma {
     email: "email";
     name: "name";
     password: "password";
-    avatar: "avatar";
+    avatarId: "avatarId";
     verificationMethod: "verificationMethod";
     createdAt: "createdAt";
     updatedAt: "updatedAt";
@@ -3691,13 +3922,14 @@ export namespace Prisma {
     email?: StringFilter<"User"> | string;
     name?: StringFilter<"User"> | string;
     password?: StringNullableFilter<"User"> | string | null;
-    avatar?: StringNullableFilter<"User"> | string | null;
+    avatarId?: StringNullableFilter<"User"> | string | null;
     verificationMethod?:
       | EnumVerificationMethodNullableFilter<"User">
       | $Enums.VerificationMethod
       | null;
     createdAt?: DateTimeFilter<"User"> | Date | string;
     updatedAt?: DateTimeFilter<"User"> | Date | string;
+    avatar?: XOR<MediaNullableScalarRelationFilter, MediaWhereInput> | null;
   };
 
   export type UserOrderByWithRelationInput = {
@@ -3705,10 +3937,11 @@ export namespace Prisma {
     email?: SortOrder;
     name?: SortOrder;
     password?: SortOrderInput | SortOrder;
-    avatar?: SortOrderInput | SortOrder;
+    avatarId?: SortOrderInput | SortOrder;
     verificationMethod?: SortOrderInput | SortOrder;
     createdAt?: SortOrder;
     updatedAt?: SortOrder;
+    avatar?: MediaOrderByWithRelationInput;
   };
 
   export type UserWhereUniqueInput = Prisma.AtLeast<
@@ -3720,13 +3953,14 @@ export namespace Prisma {
       NOT?: UserWhereInput | UserWhereInput[];
       name?: StringFilter<"User"> | string;
       password?: StringNullableFilter<"User"> | string | null;
-      avatar?: StringNullableFilter<"User"> | string | null;
+      avatarId?: StringNullableFilter<"User"> | string | null;
       verificationMethod?:
         | EnumVerificationMethodNullableFilter<"User">
         | $Enums.VerificationMethod
         | null;
       createdAt?: DateTimeFilter<"User"> | Date | string;
       updatedAt?: DateTimeFilter<"User"> | Date | string;
+      avatar?: XOR<MediaNullableScalarRelationFilter, MediaWhereInput> | null;
     },
     "id" | "email"
   >;
@@ -3736,7 +3970,7 @@ export namespace Prisma {
     email?: SortOrder;
     name?: SortOrder;
     password?: SortOrderInput | SortOrder;
-    avatar?: SortOrderInput | SortOrder;
+    avatarId?: SortOrderInput | SortOrder;
     verificationMethod?: SortOrderInput | SortOrder;
     createdAt?: SortOrder;
     updatedAt?: SortOrder;
@@ -3757,7 +3991,7 @@ export namespace Prisma {
     email?: StringWithAggregatesFilter<"User"> | string;
     name?: StringWithAggregatesFilter<"User"> | string;
     password?: StringNullableWithAggregatesFilter<"User"> | string | null;
-    avatar?: StringNullableWithAggregatesFilter<"User"> | string | null;
+    avatarId?: StringNullableWithAggregatesFilter<"User"> | string | null;
     verificationMethod?:
       | EnumVerificationMethodNullableWithAggregatesFilter<"User">
       | $Enums.VerificationMethod
@@ -3775,6 +4009,7 @@ export namespace Prisma {
     type?: EnumMediaTypeFilter<"Media"> | $Enums.MediaType;
     createdAt?: DateTimeFilter<"Media"> | Date | string;
     updatedAt?: DateTimeFilter<"Media"> | Date | string;
+    User?: UserListRelationFilter;
   };
 
   export type MediaOrderByWithRelationInput = {
@@ -3783,6 +4018,7 @@ export namespace Prisma {
     type?: SortOrder;
     createdAt?: SortOrder;
     updatedAt?: SortOrder;
+    User?: UserOrderByRelationAggregateInput;
   };
 
   export type MediaWhereUniqueInput = Prisma.AtLeast<
@@ -3795,6 +4031,7 @@ export namespace Prisma {
       type?: EnumMediaTypeFilter<"Media"> | $Enums.MediaType;
       createdAt?: DateTimeFilter<"Media"> | Date | string;
       updatedAt?: DateTimeFilter<"Media"> | Date | string;
+      User?: UserListRelationFilter;
     },
     "id"
   >;
@@ -3830,10 +4067,10 @@ export namespace Prisma {
     email: string;
     name: string;
     password?: string | null;
-    avatar?: string | null;
     verificationMethod?: $Enums.VerificationMethod | null;
     createdAt?: Date | string;
     updatedAt?: Date | string;
+    avatar?: MediaCreateNestedOneWithoutUserInput;
   };
 
   export type UserUncheckedCreateInput = {
@@ -3841,7 +4078,7 @@ export namespace Prisma {
     email: string;
     name: string;
     password?: string | null;
-    avatar?: string | null;
+    avatarId?: string | null;
     verificationMethod?: $Enums.VerificationMethod | null;
     createdAt?: Date | string;
     updatedAt?: Date | string;
@@ -3852,13 +4089,13 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string;
     name?: StringFieldUpdateOperationsInput | string;
     password?: NullableStringFieldUpdateOperationsInput | string | null;
-    avatar?: NullableStringFieldUpdateOperationsInput | string | null;
     verificationMethod?:
       | NullableEnumVerificationMethodFieldUpdateOperationsInput
       | $Enums.VerificationMethod
       | null;
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string;
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+    avatar?: MediaUpdateOneWithoutUserNestedInput;
   };
 
   export type UserUncheckedUpdateInput = {
@@ -3866,7 +4103,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string;
     name?: StringFieldUpdateOperationsInput | string;
     password?: NullableStringFieldUpdateOperationsInput | string | null;
-    avatar?: NullableStringFieldUpdateOperationsInput | string | null;
+    avatarId?: NullableStringFieldUpdateOperationsInput | string | null;
     verificationMethod?:
       | NullableEnumVerificationMethodFieldUpdateOperationsInput
       | $Enums.VerificationMethod
@@ -3880,7 +4117,7 @@ export namespace Prisma {
     email: string;
     name: string;
     password?: string | null;
-    avatar?: string | null;
+    avatarId?: string | null;
     verificationMethod?: $Enums.VerificationMethod | null;
     createdAt?: Date | string;
     updatedAt?: Date | string;
@@ -3891,7 +4128,6 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string;
     name?: StringFieldUpdateOperationsInput | string;
     password?: NullableStringFieldUpdateOperationsInput | string | null;
-    avatar?: NullableStringFieldUpdateOperationsInput | string | null;
     verificationMethod?:
       | NullableEnumVerificationMethodFieldUpdateOperationsInput
       | $Enums.VerificationMethod
@@ -3905,7 +4141,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string;
     name?: StringFieldUpdateOperationsInput | string;
     password?: NullableStringFieldUpdateOperationsInput | string | null;
-    avatar?: NullableStringFieldUpdateOperationsInput | string | null;
+    avatarId?: NullableStringFieldUpdateOperationsInput | string | null;
     verificationMethod?:
       | NullableEnumVerificationMethodFieldUpdateOperationsInput
       | $Enums.VerificationMethod
@@ -3920,6 +4156,7 @@ export namespace Prisma {
     type: $Enums.MediaType;
     createdAt?: Date | string;
     updatedAt?: Date | string;
+    User?: UserCreateNestedManyWithoutAvatarInput;
   };
 
   export type MediaUncheckedCreateInput = {
@@ -3928,6 +4165,7 @@ export namespace Prisma {
     type: $Enums.MediaType;
     createdAt?: Date | string;
     updatedAt?: Date | string;
+    User?: UserUncheckedCreateNestedManyWithoutAvatarInput;
   };
 
   export type MediaUpdateInput = {
@@ -3936,6 +4174,7 @@ export namespace Prisma {
     type?: EnumMediaTypeFieldUpdateOperationsInput | $Enums.MediaType;
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string;
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+    User?: UserUpdateManyWithoutAvatarNestedInput;
   };
 
   export type MediaUncheckedUpdateInput = {
@@ -3944,6 +4183,7 @@ export namespace Prisma {
     type?: EnumMediaTypeFieldUpdateOperationsInput | $Enums.MediaType;
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string;
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+    User?: UserUncheckedUpdateManyWithoutAvatarNestedInput;
   };
 
   export type MediaCreateManyInput = {
@@ -4030,6 +4270,11 @@ export namespace Prisma {
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string;
   };
 
+  export type MediaNullableScalarRelationFilter = {
+    is?: MediaWhereInput | null;
+    isNot?: MediaWhereInput | null;
+  };
+
   export type SortOrderInput = {
     sort: SortOrder;
     nulls?: NullsOrder;
@@ -4040,7 +4285,7 @@ export namespace Prisma {
     email?: SortOrder;
     name?: SortOrder;
     password?: SortOrder;
-    avatar?: SortOrder;
+    avatarId?: SortOrder;
     verificationMethod?: SortOrder;
     createdAt?: SortOrder;
     updatedAt?: SortOrder;
@@ -4051,7 +4296,7 @@ export namespace Prisma {
     email?: SortOrder;
     name?: SortOrder;
     password?: SortOrder;
-    avatar?: SortOrder;
+    avatarId?: SortOrder;
     verificationMethod?: SortOrder;
     createdAt?: SortOrder;
     updatedAt?: SortOrder;
@@ -4062,7 +4307,7 @@ export namespace Prisma {
     email?: SortOrder;
     name?: SortOrder;
     password?: SortOrder;
-    avatar?: SortOrder;
+    avatarId?: SortOrder;
     verificationMethod?: SortOrder;
     createdAt?: SortOrder;
     updatedAt?: SortOrder;
@@ -4152,6 +4397,16 @@ export namespace Prisma {
     not?: NestedEnumMediaTypeFilter<$PrismaModel> | $Enums.MediaType;
   };
 
+  export type UserListRelationFilter = {
+    every?: UserWhereInput;
+    some?: UserWhereInput;
+    none?: UserWhereInput;
+  };
+
+  export type UserOrderByRelationAggregateInput = {
+    _count?: SortOrder;
+  };
+
   export type MediaCountOrderByAggregateInput = {
     id?: SortOrder;
     url?: SortOrder;
@@ -4188,6 +4443,15 @@ export namespace Prisma {
     _max?: NestedEnumMediaTypeFilter<$PrismaModel>;
   };
 
+  export type MediaCreateNestedOneWithoutUserInput = {
+    create?: XOR<
+      MediaCreateWithoutUserInput,
+      MediaUncheckedCreateWithoutUserInput
+    >;
+    connectOrCreate?: MediaCreateOrConnectWithoutUserInput;
+    connect?: MediaWhereUniqueInput;
+  };
+
   export type StringFieldUpdateOperationsInput = {
     set?: string;
   };
@@ -4204,8 +4468,101 @@ export namespace Prisma {
     set?: Date | string;
   };
 
+  export type MediaUpdateOneWithoutUserNestedInput = {
+    create?: XOR<
+      MediaCreateWithoutUserInput,
+      MediaUncheckedCreateWithoutUserInput
+    >;
+    connectOrCreate?: MediaCreateOrConnectWithoutUserInput;
+    upsert?: MediaUpsertWithoutUserInput;
+    disconnect?: MediaWhereInput | boolean;
+    delete?: MediaWhereInput | boolean;
+    connect?: MediaWhereUniqueInput;
+    update?: XOR<
+      XOR<
+        MediaUpdateToOneWithWhereWithoutUserInput,
+        MediaUpdateWithoutUserInput
+      >,
+      MediaUncheckedUpdateWithoutUserInput
+    >;
+  };
+
+  export type UserCreateNestedManyWithoutAvatarInput = {
+    create?:
+      | XOR<UserCreateWithoutAvatarInput, UserUncheckedCreateWithoutAvatarInput>
+      | UserCreateWithoutAvatarInput[]
+      | UserUncheckedCreateWithoutAvatarInput[];
+    connectOrCreate?:
+      | UserCreateOrConnectWithoutAvatarInput
+      | UserCreateOrConnectWithoutAvatarInput[];
+    createMany?: UserCreateManyAvatarInputEnvelope;
+    connect?: UserWhereUniqueInput | UserWhereUniqueInput[];
+  };
+
+  export type UserUncheckedCreateNestedManyWithoutAvatarInput = {
+    create?:
+      | XOR<UserCreateWithoutAvatarInput, UserUncheckedCreateWithoutAvatarInput>
+      | UserCreateWithoutAvatarInput[]
+      | UserUncheckedCreateWithoutAvatarInput[];
+    connectOrCreate?:
+      | UserCreateOrConnectWithoutAvatarInput
+      | UserCreateOrConnectWithoutAvatarInput[];
+    createMany?: UserCreateManyAvatarInputEnvelope;
+    connect?: UserWhereUniqueInput | UserWhereUniqueInput[];
+  };
+
   export type EnumMediaTypeFieldUpdateOperationsInput = {
     set?: $Enums.MediaType;
+  };
+
+  export type UserUpdateManyWithoutAvatarNestedInput = {
+    create?:
+      | XOR<UserCreateWithoutAvatarInput, UserUncheckedCreateWithoutAvatarInput>
+      | UserCreateWithoutAvatarInput[]
+      | UserUncheckedCreateWithoutAvatarInput[];
+    connectOrCreate?:
+      | UserCreateOrConnectWithoutAvatarInput
+      | UserCreateOrConnectWithoutAvatarInput[];
+    upsert?:
+      | UserUpsertWithWhereUniqueWithoutAvatarInput
+      | UserUpsertWithWhereUniqueWithoutAvatarInput[];
+    createMany?: UserCreateManyAvatarInputEnvelope;
+    set?: UserWhereUniqueInput | UserWhereUniqueInput[];
+    disconnect?: UserWhereUniqueInput | UserWhereUniqueInput[];
+    delete?: UserWhereUniqueInput | UserWhereUniqueInput[];
+    connect?: UserWhereUniqueInput | UserWhereUniqueInput[];
+    update?:
+      | UserUpdateWithWhereUniqueWithoutAvatarInput
+      | UserUpdateWithWhereUniqueWithoutAvatarInput[];
+    updateMany?:
+      | UserUpdateManyWithWhereWithoutAvatarInput
+      | UserUpdateManyWithWhereWithoutAvatarInput[];
+    deleteMany?: UserScalarWhereInput | UserScalarWhereInput[];
+  };
+
+  export type UserUncheckedUpdateManyWithoutAvatarNestedInput = {
+    create?:
+      | XOR<UserCreateWithoutAvatarInput, UserUncheckedCreateWithoutAvatarInput>
+      | UserCreateWithoutAvatarInput[]
+      | UserUncheckedCreateWithoutAvatarInput[];
+    connectOrCreate?:
+      | UserCreateOrConnectWithoutAvatarInput
+      | UserCreateOrConnectWithoutAvatarInput[];
+    upsert?:
+      | UserUpsertWithWhereUniqueWithoutAvatarInput
+      | UserUpsertWithWhereUniqueWithoutAvatarInput[];
+    createMany?: UserCreateManyAvatarInputEnvelope;
+    set?: UserWhereUniqueInput | UserWhereUniqueInput[];
+    disconnect?: UserWhereUniqueInput | UserWhereUniqueInput[];
+    delete?: UserWhereUniqueInput | UserWhereUniqueInput[];
+    connect?: UserWhereUniqueInput | UserWhereUniqueInput[];
+    update?:
+      | UserUpdateWithWhereUniqueWithoutAvatarInput
+      | UserUpdateWithWhereUniqueWithoutAvatarInput[];
+    updateMany?:
+      | UserUpdateManyWithWhereWithoutAvatarInput
+      | UserUpdateManyWithWhereWithoutAvatarInput[];
+    deleteMany?: UserScalarWhereInput | UserScalarWhereInput[];
   };
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -4381,6 +4738,193 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>;
     _min?: NestedEnumMediaTypeFilter<$PrismaModel>;
     _max?: NestedEnumMediaTypeFilter<$PrismaModel>;
+  };
+
+  export type MediaCreateWithoutUserInput = {
+    id?: string;
+    url: string;
+    type: $Enums.MediaType;
+    createdAt?: Date | string;
+    updatedAt?: Date | string;
+  };
+
+  export type MediaUncheckedCreateWithoutUserInput = {
+    id?: string;
+    url: string;
+    type: $Enums.MediaType;
+    createdAt?: Date | string;
+    updatedAt?: Date | string;
+  };
+
+  export type MediaCreateOrConnectWithoutUserInput = {
+    where: MediaWhereUniqueInput;
+    create: XOR<
+      MediaCreateWithoutUserInput,
+      MediaUncheckedCreateWithoutUserInput
+    >;
+  };
+
+  export type MediaUpsertWithoutUserInput = {
+    update: XOR<
+      MediaUpdateWithoutUserInput,
+      MediaUncheckedUpdateWithoutUserInput
+    >;
+    create: XOR<
+      MediaCreateWithoutUserInput,
+      MediaUncheckedCreateWithoutUserInput
+    >;
+    where?: MediaWhereInput;
+  };
+
+  export type MediaUpdateToOneWithWhereWithoutUserInput = {
+    where?: MediaWhereInput;
+    data: XOR<
+      MediaUpdateWithoutUserInput,
+      MediaUncheckedUpdateWithoutUserInput
+    >;
+  };
+
+  export type MediaUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string;
+    url?: StringFieldUpdateOperationsInput | string;
+    type?: EnumMediaTypeFieldUpdateOperationsInput | $Enums.MediaType;
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+  };
+
+  export type MediaUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string;
+    url?: StringFieldUpdateOperationsInput | string;
+    type?: EnumMediaTypeFieldUpdateOperationsInput | $Enums.MediaType;
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+  };
+
+  export type UserCreateWithoutAvatarInput = {
+    id?: string;
+    email: string;
+    name: string;
+    password?: string | null;
+    verificationMethod?: $Enums.VerificationMethod | null;
+    createdAt?: Date | string;
+    updatedAt?: Date | string;
+  };
+
+  export type UserUncheckedCreateWithoutAvatarInput = {
+    id?: string;
+    email: string;
+    name: string;
+    password?: string | null;
+    verificationMethod?: $Enums.VerificationMethod | null;
+    createdAt?: Date | string;
+    updatedAt?: Date | string;
+  };
+
+  export type UserCreateOrConnectWithoutAvatarInput = {
+    where: UserWhereUniqueInput;
+    create: XOR<
+      UserCreateWithoutAvatarInput,
+      UserUncheckedCreateWithoutAvatarInput
+    >;
+  };
+
+  export type UserCreateManyAvatarInputEnvelope = {
+    data: UserCreateManyAvatarInput | UserCreateManyAvatarInput[];
+    skipDuplicates?: boolean;
+  };
+
+  export type UserUpsertWithWhereUniqueWithoutAvatarInput = {
+    where: UserWhereUniqueInput;
+    update: XOR<
+      UserUpdateWithoutAvatarInput,
+      UserUncheckedUpdateWithoutAvatarInput
+    >;
+    create: XOR<
+      UserCreateWithoutAvatarInput,
+      UserUncheckedCreateWithoutAvatarInput
+    >;
+  };
+
+  export type UserUpdateWithWhereUniqueWithoutAvatarInput = {
+    where: UserWhereUniqueInput;
+    data: XOR<
+      UserUpdateWithoutAvatarInput,
+      UserUncheckedUpdateWithoutAvatarInput
+    >;
+  };
+
+  export type UserUpdateManyWithWhereWithoutAvatarInput = {
+    where: UserScalarWhereInput;
+    data: XOR<
+      UserUpdateManyMutationInput,
+      UserUncheckedUpdateManyWithoutAvatarInput
+    >;
+  };
+
+  export type UserScalarWhereInput = {
+    AND?: UserScalarWhereInput | UserScalarWhereInput[];
+    OR?: UserScalarWhereInput[];
+    NOT?: UserScalarWhereInput | UserScalarWhereInput[];
+    id?: StringFilter<"User"> | string;
+    email?: StringFilter<"User"> | string;
+    name?: StringFilter<"User"> | string;
+    password?: StringNullableFilter<"User"> | string | null;
+    avatarId?: StringNullableFilter<"User"> | string | null;
+    verificationMethod?:
+      | EnumVerificationMethodNullableFilter<"User">
+      | $Enums.VerificationMethod
+      | null;
+    createdAt?: DateTimeFilter<"User"> | Date | string;
+    updatedAt?: DateTimeFilter<"User"> | Date | string;
+  };
+
+  export type UserCreateManyAvatarInput = {
+    id?: string;
+    email: string;
+    name: string;
+    password?: string | null;
+    verificationMethod?: $Enums.VerificationMethod | null;
+    createdAt?: Date | string;
+    updatedAt?: Date | string;
+  };
+
+  export type UserUpdateWithoutAvatarInput = {
+    id?: StringFieldUpdateOperationsInput | string;
+    email?: StringFieldUpdateOperationsInput | string;
+    name?: StringFieldUpdateOperationsInput | string;
+    password?: NullableStringFieldUpdateOperationsInput | string | null;
+    verificationMethod?:
+      | NullableEnumVerificationMethodFieldUpdateOperationsInput
+      | $Enums.VerificationMethod
+      | null;
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+  };
+
+  export type UserUncheckedUpdateWithoutAvatarInput = {
+    id?: StringFieldUpdateOperationsInput | string;
+    email?: StringFieldUpdateOperationsInput | string;
+    name?: StringFieldUpdateOperationsInput | string;
+    password?: NullableStringFieldUpdateOperationsInput | string | null;
+    verificationMethod?:
+      | NullableEnumVerificationMethodFieldUpdateOperationsInput
+      | $Enums.VerificationMethod
+      | null;
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+  };
+
+  export type UserUncheckedUpdateManyWithoutAvatarInput = {
+    id?: StringFieldUpdateOperationsInput | string;
+    email?: StringFieldUpdateOperationsInput | string;
+    name?: StringFieldUpdateOperationsInput | string;
+    password?: NullableStringFieldUpdateOperationsInput | string | null;
+    verificationMethod?:
+      | NullableEnumVerificationMethodFieldUpdateOperationsInput
+      | $Enums.VerificationMethod
+      | null;
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string;
   };
 
   /**

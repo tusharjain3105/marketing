@@ -34,16 +34,18 @@ model User {
   email              String              @unique
   name               String
   password           String?
-  avatar             String?
+  avatar             Media?              @relation(fields: [avatarId], references: [id])
+  avatarId           String?
   verificationMethod VerificationMethod?
   createdAt          DateTime            @default(now())
   updatedAt          DateTime            @updatedAt
 }
 
 model Media {
-  id        String   @id @default(uuid())
+  id        String    @id @default(uuid())
   url       String
   type      MediaType
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  User      User[]
 }
