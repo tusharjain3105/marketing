@@ -2,6 +2,9 @@
 @import "tw-animate-css";
 @plugin "@tailwindcss/typography";
 
+@import "uploadthing/tw/v4";
+@source "../node_modules/@uploadthing/react/dist";
+
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
@@ -73,6 +76,7 @@
   --primary-medium: oklch(0.6 0.2 70);  /* Medium amber */
   --primary-strong: oklch(0.5 0.25 70); /* Strong amber */
   --primary-inverted: oklch(0.3 0.2 70); /* Dark amber */
+  --primary-foreground: oklch(0.985 0 0);
   --secondary: oklch(0.97 0 0);
   --secondary-foreground: oklch(0.205 0 0);
   --muted: oklch(0.97 0 0);
@@ -99,7 +103,7 @@
 }
 
 .dark {
-  --base: oklch(0.145 0 0);
+  --background: oklch(0.145 0 0);
   --soft: oklch(0.2 0 0);
   --medium: oklch(0.25 0 0);
   --strong: oklch(0.3 0 0);
@@ -116,6 +120,7 @@
   --primary-medium: oklch(0.75 0.2 70); /* Lighter medium amber */
   --primary-strong: oklch(0.8 0.25 70); /* Bright strong amber */
   --primary-inverted: oklch(0.9 0.2 70); /* Very light amber */
+  --primary-foreground: oklch(0.145 0 0);
   --secondary: oklch(0.269 0 0);
   --secondary-foreground: oklch(0.985 0 0);
   --muted: oklch(0.269 0 0);

@@ -29,6 +29,17 @@ enum MediaType {
   DOCUMENT
 }
 
+enum BlogStatus {
+  DRAFT
+  PUBLISHED
+  ARCHIVED
+}
+
+enum UserRole {
+  ADMIN
+  USER
+}
+
 model User {
   id                 String              @id @default(uuid())
   email              String              @unique
@@ -39,8 +50,10 @@ model User {
   verificationMethod VerificationMethod?
   createdAt          DateTime            @default(now())
   updatedAt          DateTime            @updatedAt
+  role               UserRole            @default(USER)
 
   // Flags
+  Blog Blog[]
 }
 
 model Media {
@@ -50,12 +63,32 @@ model Media {
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
   User      User[]
+  Blog      Blog[]
 }
 
 model Newsletter {
-  id        String    @id @default(uuid())
-  email     String    @unique
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
-  active    Boolean   @default(true)
+  id        String   @id @default(uuid())
+  email     String   @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  active    Boolean  @default(true)
+}
+
+model Blog {
+  id          String   @id @default(uuid())
+  slug        String   @unique
+  title       String
+  description String
+  thumbnail   Media?   @relation(fields: [thumbnailId], references: [id])
+  thumbnailId String?
+  content     String
+  tags        String[]
+  author      User     @relation(fields: [authorId], references: [id])
+  authorId    String
+
+  // Flags
+  status      BlogStatus @default(DRAFT)
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 }

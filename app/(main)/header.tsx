@@ -2,7 +2,7 @@ import actions from "@/actions";
 import LinkLoader from "@/components/LinkLoader";
 import NavLink from "@/components/nav-link";
 import ThemeSwitch from "@/components/theme-switch";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -27,8 +27,8 @@ import { Suspense } from "react";
 
 const Header = () => {
   return (
-    <header className="top-0 z-50 sticky bg-medium/80 backdrop-blur-sm">
-      <div className="flex justify-between md:justify-start items-center gap-6 px-4 md:px-24 py-2 md:py-6">
+    <header className="top-0 z-50 sticky flex items-center bg-medium/80 backdrop-blur-sm h-24">
+      <div className="flex flex-1 justify-between md:justify-start items-center gap-6 px-4 md:px-24 py-2 md:py-6">
         <Sidebar />
         <Logo />
         <Nav className="hidden md:flex ml-auto" />
@@ -115,7 +115,6 @@ const AuthBasedNav = async ({ mini }: { mini?: boolean }) => {
           )}
         >
           <Avatar className="shadow-sm border size-12">
-            <AvatarImage src={user?.avatar || ""} />
             <AvatarFallback>{user?.name?.charAt(0)}</AvatarFallback>
           </Avatar>
           {!mini && (

@@ -3,7 +3,7 @@ import Header from "./header";
 
 const MainLayout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="min-h-screen">
       <Header />
       {children}
       <Footer />

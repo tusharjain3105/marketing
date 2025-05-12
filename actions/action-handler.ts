@@ -4,12 +4,7 @@ import type { ZodSchema } from "zod";
 import config from "@/lib/config";
 import { sign, verify } from "jsonwebtoken";
 import { unstable_rethrow } from "next/navigation";
-
-interface IUserPayload {
-  id: string;
-  email: string;
-  name: string;
-}
+import type { IUserPayload } from "@/lib/types";
 
 /**
  * Represents a function that takes arguments and returns a result
@@ -37,7 +32,7 @@ type ActionResult<Result> = Promise<[undefined, Awaited<Result>] | [Error]>;
  * @param validationSchema - Optional Zod schema for input validation
  * @returns A function that handles validation and error handling
  */
-export const createActionHandler = <Args, Result>(
+export const createAction = <Args, Result>(
   callback: ActionCallbackWithContext<Args, Result, Context>,
   validationSchema?: ZodSchema<Args>,
   { tag }: { tag?: string } = {},

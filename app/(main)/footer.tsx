@@ -7,7 +7,7 @@ import Link from "next/link";
 const Footer = () => {
   return (
     <footer className="bg-medium border-t">
-      <div className="px-4 md:px-24 py-12 container">
+      <div className="px-4 md:px-24 py-12">
         <div className="gap-8 grid grid-cols-2 md:grid-cols-4">
           {config.nav.footer.groups.map((group) => (
             <div key={group.label} className="space-y-4">

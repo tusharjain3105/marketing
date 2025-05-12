@@ -35,6 +35,10 @@ const config = {
         href: "/",
       },
       {
+        label: "Blogs",
+        href: "/blogs",
+      },
+      {
         label: "About",
         href: "/about",
       },
@@ -59,7 +63,7 @@ const config = {
           label: "Company",
           items: [
             { label: "About", href: "/about" },
-            { label: "Blog", href: "/blog" },
+            { label: "Blogs", href: "/blogs" },
             { label: "Careers", href: "/careers" },
             { label: "Contact", href: "/contact" },
           ],
@@ -82,7 +86,6 @@ const config = {
       legal: [
         { label: "Terms", href: "/terms" },
         { label: "Privacy", href: "/privacy" },
-        { label: "Cookies", href: "/cookies" },
       ] as NavItem[],
     },
   },

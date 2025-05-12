@@ -125,6 +125,7 @@ exports.Prisma.UserScalarFieldEnum = {
   verificationMethod: "verificationMethod",
   createdAt: "createdAt",
   updatedAt: "updatedAt",
+  role: "role",
 };
 
 exports.Prisma.MediaScalarFieldEnum = {
@@ -141,6 +142,20 @@ exports.Prisma.NewsletterScalarFieldEnum = {
   createdAt: "createdAt",
   updatedAt: "updatedAt",
   active: "active",
+};
+
+exports.Prisma.BlogScalarFieldEnum = {
+  id: "id",
+  slug: "slug",
+  title: "title",
+  description: "description",
+  thumbnailId: "thumbnailId",
+  content: "content",
+  tags: "tags",
+  authorId: "authorId",
+  status: "status",
+  createdAt: "createdAt",
+  updatedAt: "updatedAt",
 };
 
 exports.Prisma.SortOrder = {
@@ -165,6 +180,11 @@ exports.VerificationMethod = exports.$Enums.VerificationMethod = {
   MANUAL: "MANUAL",
 };
 
+exports.UserRole = exports.$Enums.UserRole = {
+  ADMIN: "ADMIN",
+  USER: "USER",
+};
+
 exports.MediaType = exports.$Enums.MediaType = {
   IMAGE: "IMAGE",
   VIDEO: "VIDEO",
@@ -172,10 +192,17 @@ exports.MediaType = exports.$Enums.MediaType = {
   DOCUMENT: "DOCUMENT",
 };
 
+exports.BlogStatus = exports.$Enums.BlogStatus = {
+  DRAFT: "DRAFT",
+  PUBLISHED: "PUBLISHED",
+  ARCHIVED: "ARCHIVED",
+};
+
 exports.Prisma.ModelName = {
   User: "User",
   Media: "Media",
   Newsletter: "Newsletter",
+  Blog: "Blog",
 };
 
 /**

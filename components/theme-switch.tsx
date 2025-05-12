@@ -23,7 +23,7 @@ export default function ThemeSwitch({
       }}
     >
       <div className="relative w-full h-full">
-        <span className="md:hidden text-sm">
+        <span className="md:hidden text-sm" suppressHydrationWarning>
           {theme === "light" ? "Light Theme" : "Dark Theme"}
         </span>
         <div className="top-1/2 left-0 dark:left-full absolute place-items-center grid bg-soft rounded-full h-[102%] aspect-square text-primary-ghost dark:text-foreground dark:rotate-360 transition-all -translate-y-1/2 dark:-translate-x-full duration-500 ease-in-out">

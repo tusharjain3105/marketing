@@ -3,6 +3,7 @@ import actions from "@/actions";
 import { cn } from "@/lib/utils";
 import { toast } from "sonner";
 import { Input } from "./ui/input";
+import { Button } from "./ui/button";
 
 const SubscribeForm = ({ className }: { className?: string }) => {
   return (
@@ -35,12 +36,7 @@ const SubscribeForm = ({ className }: { className?: string }) => {
           placeholder="Enter your email"
           className="flex-1 bg-soft/50 px-3 py-2 border border-soft rounded-md focus:outline-none focus:ring-2 focus:ring-primary-soft text-sm"
         />
-        <button
-          type="submit"
-          className="bg-primary hover:bg-primary-medium text-foreground-inverted px-4 py-2 rounded-md font-medium text-sm transition-colors"
-        >
-          Subscribe
-        </button>
+        <Button type="submit">Subscribe</Button>
       </form>
     </div>
   );

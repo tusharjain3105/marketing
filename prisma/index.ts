@@ -10,6 +10,9 @@ const prisma =
       user: {
         password: true,
       },
+      blog: {
+        content: true,
+      },
     },
   });
 

@@ -4,9 +4,9 @@ import prisma from "@/prisma";
 import { compareSync, hashSync } from "bcryptjs";
 import { redirect } from "next/navigation";
 import { z } from "zod";
-import { createActionHandler } from "./action-handler";
+import { createAction } from "./action-handler";
 import { cache } from "react";
-export const register = createActionHandler(
+export const register = createAction(
   async (args) => {
     // Check if user already exists
     const existingUser = await prisma.user.findUnique({
@@ -43,7 +43,7 @@ export const register = createActionHandler(
   }),
 );
 
-export const login = createActionHandler(
+export const login = createAction(
   async ({ email, password }, { generateAndSaveAuthToken }) => {
     const user = await prisma.user.findUnique({
       where: {
@@ -82,7 +82,7 @@ export const login = createActionHandler(
   }),
 );
 
-export const profile = createActionHandler(
+export const profile = createAction(
   async (_, { getUser }) => {
     const user = await getUser();
     if (!user) {
@@ -105,6 +105,6 @@ export const profile = createActionHandler(
 
 export const cachedProfile = cache(profile);
 
-export const logout = createActionHandler(async (_, { deleteCookie }) => {
+export const logout = createAction(async (_, { deleteCookie }) => {
   await deleteCookie(config.auth.tokenName);
 });
