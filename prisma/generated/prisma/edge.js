@@ -186,7 +186,7 @@ const config = {
     },
     output: {
       value:
-        "/Users/tusharjain/projects/personal/practice/starter-kit/prisma/generated/prisma",
+        "/Users/tusharjain/projects/personal/practice/shopping/prisma/generated/prisma",
       fromEnvVar: null,
     },
     config: {
@@ -201,23 +201,23 @@ const config = {
     ],
     previewFeatures: [],
     sourceFilePath:
-      "/Users/tusharjain/projects/personal/practice/starter-kit/prisma/schema.prisma",
+      "/Users/tusharjain/projects/personal/practice/shopping/prisma/schema.prisma",
     isCustomOutput: true,
   },
   relativeEnvPaths: {
     rootEnvPath: null,
-    schemaEnvPath: "../../../.env",
   },
   relativePath: "../..",
   clientVersion: "6.7.0",
   engineVersion: "3cff47a7f5d65c3ea74883f1d736e41d68ce91ed",
   datasourceNames: ["db"],
   activeProvider: "postgresql",
+  postinstall: true,
   inlineDatasources: {
     db: {
       url: {
         fromEnvVar: "DATABASE_URL",
-        value: "postgresql://admin:admin@localhost:5432/starter",
+        value: null,
       },
     },
   },

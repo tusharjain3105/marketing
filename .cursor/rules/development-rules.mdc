@@ -1,0 +1,85 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# Cursor Rules
+
+## Tech stack
+- Web development framwork: Next.js
+- 
+
+## Component Structure
+- Always create multiple components instead of creating large one component.
+- Prefer shadcn based UI components over building from scratch.
+
+## Link Usage
+- Don't use `a`, but use `Link` from `next/link`.
+
+## Performance
+- Always do code splitting to optimize loading times.
+- Prefer React Server Components (RSC) over client components for better performance.
+
+## Backend Interactions
+- Use server actions from `@actions` for backend interactions.
+
+## Additional Suggestions
+- Maintain consistent naming conventions for files and components.
+- Write unit tests for all new components and actions.
+- Document complex logic within the codebase to improve maintainability.
+- Regularly review and refactor code to adhere to best practices.
+- Always use `kebab-case` for file and folder names, `PascalCase` for components and `camelCase` for `variables` and `function` names.
+- Consider refactoring if components exceeds 100 lines or functions exceeds 20-30 statements (sometimes 1 statement can be of multiple lines as well eg prisma queries)
+
+## Use following directory structure
+shopping
+├── app
+├──── api
+├── components
+├────[module]-components
+├────ui (for shadcn components)
+├────skeletons
+├── actions
+├── lib
+├────types.ts
+├── hoc
+├── hooks
+├── stores
+└── prisma
+└── tests
+
+## Next / React specific rules
+- Always use `use client` directive for client components
+- Use `use cache` for cachable async components with `cacheTag` and `cacheLife`
+- Always create skeleton for async components and wrap them with `Suspense`
+- User `error.ts` for error boundary in the app. Follow next documentation for better clarity
+- Use cursom error boundaries for bigger components as well
+- Use `*.client.ts` for client files
+- Avoid writing business logic inside components using service layer [index.ts](mdc:services/index.ts) or [index.ts](mdc:actions/index.ts)
+- Write non reactive code outside of the components eg `calculatePrice => (a,b,c) => a ?? 0 + b ?? 0 + c ?? 0`
+
+## Coding guidelines
+- Use named export functions instead of a class or object-based approach. Then, import these functions in the index file to make them accessible as properties of an object.
+- Write doc-comments for functions
+- Write `zod` schemas for validations in [zod-schema.ts](mdc:lib/zod-schema.ts)
+- Always use `shadcn` form with `zod` validation for forms
+- Use shared `zod` schema for `frontend` and `backend` validation
+- Ensure that all UI components are accessible and follow best practices for web accessibility (e.g., ARIA roles, keyboard navigation).
+- Avoid magic values but maintain everything in [config.ts](mdc:lib/config.ts) 
+- Always use `tryCatch` from [utils.ts](mdc:lib/utils.ts) for client side async calls to avoid irritating `try-catch` block
+- Use early returns
+- Always use `tailwindcss` for styling
+
+## Typescript guidelines
+- Avoid `any` type
+- Always provide fully typed code
+- Always create types in `lib/types.ts`
+- Avoid typescript enums. Prefer `Prisma` generated enums if possible
+
+
+
+
+
+
+
+

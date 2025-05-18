@@ -16,3 +16,12 @@ export const slugify = (text: string) => {
     .replace(/^-|-$/g, "")
     .replace(/-+$/, "");
 };
+
+export const tryCatch = async <T>(fn: () => Promise<T>) => {
+  try {
+    const result = await fn();
+    return [undefined, result] as const;
+  } catch (error) {
+    return [error as Error] as const;
+  }
+};
