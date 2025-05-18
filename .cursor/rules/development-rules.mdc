@@ -6,8 +6,48 @@ alwaysApply: true
 # Cursor Rules
 
 ## Tech stack
-- Web development framwork: Next.js
-- 
+- **Framework**:
+  - Next.js (experimental version) (React framework for server-rendered applications)
+
+- **Frontend Libraries**:
+  - React (JavaScript library for building user interfaces)
+  - @tanstack/react-query (Data fetching and state management)
+  - @tiptap/react (Headless editor framework for rich text editing)
+  - @radix-ui/react (For shadcn UI components)
+
+- **Styling**:
+  - Tailwind CSS (Utility-first CSS framework)
+  - Sass (CSS preprocessor)
+
+- **State Management**:
+  - Zustand (Small, fast state management solution, but avoid using client side state management in favour of RSC)
+
+- **Form Handling**:
+  - react-hook-form (Library for managing forms in React with shadcn)
+
+- **Validation**:
+  - Zod (TypeScript-first schema declaration and validation)
+
+- **Email Handling**:
+  - @react-email/components (Library for building email templates in React)
+
+- **Testing**:
+  - Jest (JavaScript testing framework)
+  - @testing-library/react (Library for testing React components)
+
+- **Database**:
+  - Prisma (ORM for Node.js and TypeScript)
+
+- **Utilities**:
+  - date-fns (Modern JavaScript date utility library)
+  - clsx (Utility for constructing className strings conditionally)
+
+- **Build Tools**:
+  - ESLint (Static code analysis tool)
+  - Prettier (Opinionated code formatter)
+
+- **Version Control**:
+  - Husky (Tool for managing Git hooks)
 
 ## Component Structure
 - Always create multiple components instead of creating large one component.
@@ -22,6 +62,7 @@ alwaysApply: true
 
 ## Backend Interactions
 - Use server actions from `@actions` for backend interactions.
+- Use `/api` only for webhooks or on demand for external requirement
 
 ## Additional Suggestions
 - Maintain consistent naming conventions for files and components.
@@ -69,6 +110,7 @@ shopping
 - Always use `tryCatch` from [utils.ts](mdc:lib/utils.ts) for client side async calls to avoid irritating `try-catch` block
 - Use early returns
 - Always use `tailwindcss` for styling
+- Always use [utils.ts](mdc:lib/utils.ts) `cn` function to merge tailwind classes
 
 ## Typescript guidelines
 - Avoid `any` type
