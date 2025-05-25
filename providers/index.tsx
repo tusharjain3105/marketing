@@ -1,6 +1,7 @@
 "use client";
 import { Toaster } from "@/components/ui/sonner";
 import { AdvancedThemeProvider } from "@/providers/theme-provider";
+import { DesignStyleProvider } from "@/providers/design-style-provider";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
@@ -16,8 +17,10 @@ export default function Providers({ children }: { children: React.ReactNode }) {
         enableSystem
         disableTransitionOnChange={false}
       >
-        <Toaster richColors closeButton expand position="top-right" />
-        {children}
+        <DesignStyleProvider>
+          <Toaster richColors closeButton expand position="top-right" />
+          {children}
+        </DesignStyleProvider>
       </AdvancedThemeProvider>
     </QueryClientProvider>
   );

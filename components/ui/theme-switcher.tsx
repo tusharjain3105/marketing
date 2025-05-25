@@ -17,12 +17,17 @@ import {
   useTheme,
   type ColorScheme,
 } from "@/providers/theme-provider";
-import { Check, Monitor, Moon, Palette, Sun } from "lucide-react";
+import {
+  useDesignStyle,
+  designStyleConfig,
+} from "@/providers/design-style-provider";
+import { Check, Monitor, Moon, Palette, Sun, Sparkles } from "lucide-react";
 import { useTheme as useNextTheme } from "next-themes";
 
 export function ThemeSwitcher({ trigger }: { trigger?: React.ReactNode }) {
   const { theme, setTheme } = useNextTheme();
   const { colorScheme, setColorScheme } = useTheme();
+  const { designStyle, setDesignStyle } = useDesignStyle();
 
   const getModeIcon = (mode: string) => {
     switch (mode) {
@@ -75,6 +80,38 @@ export function ThemeSwitcher({ trigger }: { trigger?: React.ReactNode }) {
                   <span>{mode.label}</span>
                 </div>
                 {theme === mode.name && <Check className="w-4 h-4" />}
+              </DropdownMenuItem>
+            ))}
+          </DropdownMenuSubContent>
+        </DropdownMenuSub>
+
+        <DropdownMenuSeparator />
+
+        {/* Design Style Selector */}
+        <DropdownMenuSub>
+          <DropdownMenuSubTrigger>
+            <div className="flex items-center gap-2">
+              <Sparkles className="w-4 h-4" />
+              <span>Design Style</span>
+            </div>
+          </DropdownMenuSubTrigger>
+          <DropdownMenuSubContent>
+            {designStyleConfig.map((style) => (
+              <DropdownMenuItem
+                key={style.name}
+                onClick={() => setDesignStyle(style.name)}
+                className="flex justify-between items-center"
+              >
+                <div className="flex items-center gap-2">
+                  <span className="text-lg">{style.preview}</span>
+                  <div className="flex flex-col">
+                    <span className="font-medium">{style.label}</span>
+                    <span className="text-muted-foreground text-xs">
+                      {style.description}
+                    </span>
+                  </div>
+                </div>
+                {designStyle === style.name && <Check className="w-4 h-4" />}
               </DropdownMenuItem>
             ))}
           </DropdownMenuSubContent>

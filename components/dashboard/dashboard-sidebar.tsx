@@ -47,7 +47,7 @@ export function DashboardSidebar() {
 
   return (
     <div
-      className={`relative flex flex-col h-full transition-all duration-300 glass-strong border-r border-border/50 ${
+      className={`dashboard-sidebar relative flex flex-col h-full transition-all duration-300 glass-strong border-r border-border/50 ${
         isCollapsed ? "w-16" : "w-64"
       }`}
     >
@@ -95,9 +95,9 @@ export function DashboardSidebar() {
               key={item.name}
               href={item.href}
               className={cn(
-                `flex items-center gap-3 px-3 py-2 rounded-lg transition-all duration-200 group ${
+                `dashboard-nav-item flex items-center gap-3 px-3 py-2 rounded-lg transition-all duration-200 group ${
                   isActive
-                    ? "bg-primary/20 text-primary glow"
+                    ? "active bg-primary/20 text-primary glow"
                     : "text-foreground-secondary hover:text-foreground hover:bg-soft/50"
                 }`,
                 isCollapsed && "justify-center px-0",
@@ -119,9 +119,9 @@ export function DashboardSidebar() {
               key={item.name}
               href={item.href}
               className={cn(
-                `flex items-center gap-3 px-3 py-2 rounded-lg transition-all duration-200 ${
+                `dashboard-nav-item flex items-center gap-3 px-3 py-2 rounded-lg transition-all duration-200 ${
                   isActive
-                    ? "bg-primary/20 text-primary"
+                    ? "active bg-primary/20 text-primary"
                     : "text-foreground-secondary hover:text-foreground hover:bg-soft/50"
                 }`,
                 isCollapsed && "justify-center px-0",

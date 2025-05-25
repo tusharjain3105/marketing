@@ -1,11 +1,13 @@
 import { AdminStatsCards } from "@/components/admin/admin-stats-cards";
 import { AdminCharts } from "@/components/admin/admin-charts";
-import { AdminRecentActivity } from "@/components/admin/admin-recent-activity";
 import { AdminSystemHealth } from "@/components/admin/admin-system-health";
+import { DesignStyleIndicator } from "@/components/ui/design-style-indicator";
+import { AdminRecentActivity } from "@/components/admin/admin-recent-activity";
 
 export default function AdminDashboard() {
   return (
     <div className="space-y-6">
+      <DesignStyleIndicator />
       {/* Header */}
       <div>
         <h1 className="font-bold text-gray-900 dark:text-gray-100 text-3xl">

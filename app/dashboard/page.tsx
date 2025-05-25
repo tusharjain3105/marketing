@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import { DesignStyleIndicator } from "@/components/ui/design-style-indicator";
 import {
   ArrowDownRight,
   ArrowUpRight,
@@ -18,6 +19,7 @@ import Link from "next/link";
 export default function DashboardPage() {
   return (
     <div className="space-y-6">
+      <DesignStyleIndicator />
       {/* Welcome Section */}
       <div className="flex justify-between items-center">
         <div>
