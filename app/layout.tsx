@@ -1,22 +1,11 @@
+import { ChatbotWidget } from "@/components/chatbot/chatbot-widget";
+import { UTSSR } from "@/components/uploadthing/SSRPlugin";
+import { ClientLayout } from "@/layout.client";
 import config from "@/lib/config";
 import Providers from "@/providers";
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import { ClientLayout } from "@/layout.client";
 import { Suspense, unstable_ViewTransition as ViewTransition } from "react";
 import "./globals.css";
-import { UTSSR } from "@/components/uploadthing/SSRPlugin";
-import { ChatbotWidget } from "@/components/chatbot/chatbot-widget";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
 
 export const metadata: Metadata = {
   title: config.brand.name,
@@ -30,9 +19,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+      <body className={"antialiased"}>
         <Suspense>
           <UTSSR />
         </Suspense>
