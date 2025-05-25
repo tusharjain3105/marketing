@@ -1,19 +1,19 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import {
-  MessageCircle,
-  X,
-  Send,
-  Paperclip,
-  Download,
-  Bot,
-  User,
-  Minimize2,
-  Maximize2,
-} from "lucide-react";
 import { cn } from "@/lib/utils";
+import {
+  Bot,
+  Download,
+  Maximize2,
+  MessageCircle,
+  Minimize2,
+  Paperclip,
+  Send,
+  User,
+  X,
+} from "lucide-react";
+import { useEffect, useRef, useState } from "react";
 
 interface Message {
   id: string;
@@ -40,7 +40,7 @@ export function ChatbotWidget({
   userType = "guest",
 }: ChatbotWidgetProps) {
   const [isOpen, setIsOpen] = useState(false);
-  const [isMinimized, setIsMinimized] = useState(false);
+  const [isMaximized, setIsMaximized] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
     {
       id: "1",
@@ -168,60 +168,58 @@ export function ChatbotWidget({
     "bottom-left": "bottom-4 left-4",
   };
 
-  if (!isOpen) {
-    return (
-      <div className={cn("fixed z-50", positionClasses[position])}>
-        <Button
-          onClick={() => setIsOpen(true)}
-          className="bg-primary hover:bg-primary/90 shadow-lg rounded-full w-14 h-14 glow"
-        >
-          <MessageCircle className="w-6 h-6" />
-        </Button>
-      </div>
-    );
-  }
-
   return (
-    <div className={cn("fixed z-50", positionClasses[position])}>
+    <div
+      className={cn(
+        "fixed z-50",
+        positionClasses[position],
+        isMaximized && isOpen && "bottom-0 right-0",
+      )}
+    >
       <div
         className={cn(
-          "bg-background/95 backdrop-blur-md shadow-2xl border border-border/50 rounded-lg w-80 h-96 flex flex-col",
-          isMinimized && "h-12",
+          "bg-background/95 backdrop-blur-md shadow-2xl border border-border/50 rounded-lg w-80 h-96 flex flex-col transition-all",
+          isMaximized && isOpen && "w-[30rem] max-w-screen h-screen",
+          !isOpen && "w-14 h-14",
         )}
       >
-        {/* Header */}
-        <div className="flex justify-between items-center bg-primary/10 p-4 border-b border-border/50 rounded-t-lg">
-          <div className="flex items-center gap-2">
-            <Bot className="w-5 h-5 text-primary" />
-            <span className="font-semibold text-foreground text-sm">
-              AI Assistant
-            </span>
-            {userType === "client" && (
-              <span className="bg-primary/20 px-2 py-1 rounded-full text-primary text-xs">
-                Client
-              </span>
-            )}
-          </div>
-          <div className="flex items-center gap-1">
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => setIsMinimized(!isMinimized)}
-            >
-              {isMinimized ? (
-                <Maximize2 className="w-4 h-4" />
-              ) : (
-                <Minimize2 className="w-4 h-4" />
-              )}
-            </Button>
-            <Button variant="ghost" size="sm" onClick={() => setIsOpen(false)}>
-              <X className="w-4 h-4" />
-            </Button>
-          </div>
-        </div>
-
-        {!isMinimized && (
+        {isOpen ? (
           <>
+            {/* Header */}
+            <div className="flex justify-between items-center bg-primary/10 p-4 border-b border-border/50 rounded-t-lg">
+              <div className="flex items-center gap-2">
+                <Bot className="w-5 h-5 text-primary" />
+                <span className="font-semibold text-foreground text-sm">
+                  AI Assistant
+                </span>
+                {userType === "client" && (
+                  <span className="bg-primary/20 px-2 py-1 rounded-full text-primary text-xs">
+                    Client
+                  </span>
+                )}
+              </div>
+              <div className="flex items-center gap-1">
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => setIsMaximized(!isMaximized)}
+                >
+                  {!isMaximized ? (
+                    <Maximize2 className="w-4 h-4" />
+                  ) : (
+                    <Minimize2 className="w-4 h-4" />
+                  )}
+                </Button>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => setIsOpen(false)}
+                >
+                  <X className="w-4 h-4" />
+                </Button>
+              </div>
+            </div>
+
             {/* Messages */}
             <div className="flex-1 space-y-3 p-4 overflow-y-auto">
               {messages.map((message) => (
@@ -357,7 +355,7 @@ export function ChatbotWidget({
                   type="text"
                   value={inputValue}
                   onChange={(e) => setInputValue(e.target.value)}
-                  onKeyPress={(e) => e.key === "Enter" && handleSendMessage()}
+                  onKeyDown={(e) => e.key === "Enter" && handleSendMessage()}
                   placeholder="Type your message..."
                   className="flex-1 bg-muted px-3 py-2 border border-border/50 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/20 text-sm"
                 />
@@ -372,6 +370,13 @@ export function ChatbotWidget({
               </div>
             </div>
           </>
+        ) : (
+          <Button
+            onClick={() => setIsOpen(true)}
+            className="bg-primary hover:bg-primary/90 shadow-lg rounded-full w-14 h-14 glow"
+          >
+            <MessageCircle className="w-6 h-6" />
+          </Button>
         )}
       </div>
     </div>
