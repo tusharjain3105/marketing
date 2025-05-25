@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { DesignStyleIndicator } from "@/components/ui/design-style-indicator";
+import { DesignStyleShowcase } from "@/components/ui/design-style-showcase";
 import {
   ArrowDownRight,
   ArrowUpRight,
@@ -206,6 +207,9 @@ export default function DashboardPage() {
           ))}
         </div>
       </div>
+
+      {/* Design Style Showcase */}
+      <DesignStyleShowcase />
     </div>
   );
 }

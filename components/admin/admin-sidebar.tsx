@@ -2,6 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { ThemeSwitcher } from "@/components/ui/theme-switcher";
+import { useDesignStyle } from "@/providers/design-style-provider";
 import { cn } from "@/lib/utils";
 import {
   LayoutDashboard,
@@ -28,6 +29,7 @@ import { useState } from "react";
 export function AdminSidebar() {
   const [isCollapsed, setIsCollapsed] = useState(false);
   const pathname = usePathname();
+  const { designStyle } = useDesignStyle();
 
   const navigation = [
     { name: "Dashboard", href: "/admin", icon: LayoutDashboard },
@@ -47,13 +49,29 @@ export function AdminSidebar() {
     { name: "Help", href: "/admin/help", icon: HelpCircle },
   ];
 
+  const getSidebarClass = () => {
+    const baseClass = `relative flex flex-col h-full transition-all duration-300 ${
+      isCollapsed ? "w-16" : "w-64"
+    }`;
+
+    switch (designStyle) {
+      case "dashboard":
+        return `dashboard-sidebar ${baseClass} glass-strong border-r border-border/50`;
+      case "admin":
+        return `admin-sidebar ${baseClass} bg-gray-900 dark:bg-gray-950 border-r border-gray-800 dark:border-gray-700`;
+      case "minimal":
+        return `minimal-sidebar ${baseClass} bg-background border-r border-border`;
+      case "neon":
+        return `neon-sidebar ${baseClass} glass-strong border-r border-border/50`;
+      case "corporate":
+        return `corporate-sidebar ${baseClass} bg-background border-r-2 border-border`;
+      default:
+        return `admin-sidebar ${baseClass} bg-gray-900 dark:bg-gray-950 border-r border-gray-800 dark:border-gray-700`;
+    }
+  };
+
   return (
-    <div
-      className={cn(
-        "admin-sidebar relative flex flex-col h-full transition-all duration-300 bg-gray-900 dark:bg-gray-950 border-r border-gray-800 dark:border-gray-700",
-        isCollapsed ? "w-16" : "w-64",
-      )}
-    >
+    <div className={getSidebarClass()}>
       {/* Logo */}
       <div className="flex justify-between items-center p-4 border-gray-800 dark:border-gray-700 border-b">
         {!isCollapsed && (
@@ -99,7 +117,7 @@ export function AdminSidebar() {
               key={item.name}
               href={item.href}
               className={cn(
-                "admin-nav-item flex items-center gap-3 px-3 py-2 rounded-lg transition-all duration-200 group",
+                `${designStyle}-nav-item flex items-center gap-3 px-3 py-2 rounded-lg transition-all duration-200 group`,
                 isActive
                   ? "active bg-blue-600 text-white"
                   : "text-gray-300 hover:text-white hover:bg-gray-800",
@@ -122,7 +140,7 @@ export function AdminSidebar() {
               key={item.name}
               href={item.href}
               className={cn(
-                "admin-nav-item flex items-center gap-3 px-3 py-2 rounded-lg transition-all duration-200",
+                `${designStyle}-nav-item flex items-center gap-3 px-3 py-2 rounded-lg transition-all duration-200`,
                 isActive
                   ? "active bg-blue-600 text-white"
                   : "text-gray-300 hover:text-white hover:bg-gray-800",

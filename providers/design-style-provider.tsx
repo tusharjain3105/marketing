@@ -32,7 +32,12 @@ export function DesignStyleProvider({ children }: DesignStyleProviderProps) {
     setMounted(true);
     // Load saved design style from localStorage
     const savedStyle = localStorage.getItem("design-style") as DesignStyle;
-    if (savedStyle && ["dashboard", "admin"].includes(savedStyle)) {
+    if (
+      savedStyle &&
+      ["dashboard", "admin", "minimal", "neon", "corporate"].includes(
+        savedStyle,
+      )
+    ) {
       setDesignStyle(savedStyle);
     }
   }, []);
@@ -43,7 +48,13 @@ export function DesignStyleProvider({ children }: DesignStyleProviderProps) {
       const root = document.documentElement;
 
       // Remove all design style classes
-      root.classList.remove("design-dashboard", "design-admin");
+      root.classList.remove(
+        "design-dashboard",
+        "design-admin",
+        "design-minimal",
+        "design-neon",
+        "design-corporate",
+      );
 
       // Add current design style class
       root.classList.add(`design-${designStyle}`);
@@ -86,5 +97,23 @@ export const designStyleConfig: DesignStyleConfig[] = [
     label: "Classic Admin",
     description: "Traditional dark theme with solid backgrounds",
     preview: "⚡",
+  },
+  {
+    name: "minimal",
+    label: "Minimal Clean",
+    description: "Ultra-clean design with lots of whitespace",
+    preview: "🤍",
+  },
+  {
+    name: "neon",
+    label: "Neon Cyber",
+    description: "Futuristic neon colors with dark backgrounds",
+    preview: "🌈",
+  },
+  {
+    name: "corporate",
+    label: "Corporate Pro",
+    description: "Professional business theme with subtle accents",
+    preview: "💼",
   },
 ] as const;

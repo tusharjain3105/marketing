@@ -2,6 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { ThemeSwitcher } from "@/components/ui/theme-switcher";
+import { useDesignStyle } from "@/providers/design-style-provider";
 import { cn } from "@/lib/utils";
 import {
   BarChart3,
@@ -27,6 +28,7 @@ import { useState } from "react";
 export function DashboardSidebar() {
   const [isCollapsed, setIsCollapsed] = useState(false);
   const pathname = usePathname();
+  const { designStyle } = useDesignStyle();
 
   const navigation = [
     { name: "Dashboard", href: "/dashboard", icon: Home },
@@ -45,12 +47,29 @@ export function DashboardSidebar() {
     { name: "Help", href: "/dashboard/help", icon: HelpCircle },
   ];
 
+  const getSidebarClass = () => {
+    const baseClass = `relative flex flex-col h-full transition-all duration-300 ${
+      isCollapsed ? "w-16" : "w-64"
+    }`;
+
+    switch (designStyle) {
+      case "dashboard":
+        return `dashboard-sidebar ${baseClass} glass-strong border-r border-border/50`;
+      case "admin":
+        return `admin-sidebar ${baseClass} bg-gray-900 dark:bg-gray-950 border-r border-gray-800 dark:border-gray-700`;
+      case "minimal":
+        return `minimal-sidebar ${baseClass} bg-background border-r border-border`;
+      case "neon":
+        return `neon-sidebar ${baseClass} glass-strong border-r border-border/50`;
+      case "corporate":
+        return `corporate-sidebar ${baseClass} bg-background border-r-2 border-border`;
+      default:
+        return `dashboard-sidebar ${baseClass} glass-strong border-r border-border/50`;
+    }
+  };
+
   return (
-    <div
-      className={`dashboard-sidebar relative flex flex-col h-full transition-all duration-300 glass-strong border-r border-border/50 ${
-        isCollapsed ? "w-16" : "w-64"
-      }`}
-    >
+    <div className={getSidebarClass()}>
       {/* Logo */}
       <div className="flex justify-between items-center p-4 border-b border-border/50">
         {!isCollapsed && (
@@ -95,7 +114,7 @@ export function DashboardSidebar() {
               key={item.name}
               href={item.href}
               className={cn(
-                `dashboard-nav-item flex items-center gap-3 px-3 py-2 rounded-lg transition-all duration-200 group ${
+                `${designStyle}-nav-item flex items-center gap-3 px-3 py-2 rounded-lg transition-all duration-200 group ${
                   isActive
                     ? "active bg-primary/20 text-primary glow"
                     : "text-foreground-secondary hover:text-foreground hover:bg-soft/50"
@@ -119,7 +138,7 @@ export function DashboardSidebar() {
               key={item.name}
               href={item.href}
               className={cn(
-                `dashboard-nav-item flex items-center gap-3 px-3 py-2 rounded-lg transition-all duration-200 ${
+                `${designStyle}-nav-item flex items-center gap-3 px-3 py-2 rounded-lg transition-all duration-200 ${
                   isActive
                     ? "active bg-primary/20 text-primary"
                     : "text-foreground-secondary hover:text-foreground hover:bg-soft/50"

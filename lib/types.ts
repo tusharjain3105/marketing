@@ -10,7 +10,12 @@ export interface IUserPayload {
 export type NonUndefined<T> = T extends undefined ? never : T;
 
 // Design Style Types
-export type DesignStyle = "dashboard" | "admin";
+export type DesignStyle =
+  | "dashboard"
+  | "admin"
+  | "minimal"
+  | "neon"
+  | "corporate";
 
 export interface DesignStyleConfig {
   name: DesignStyle;

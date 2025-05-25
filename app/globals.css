@@ -21,6 +21,9 @@
 /* Custom variants for design styles */
 @custom-variant design-dashboard (&:is(.design-dashboard *));
 @custom-variant design-admin (&:is(.design-admin *));
+@custom-variant design-minimal (&:is(.design-minimal *));
+@custom-variant design-neon (&:is(.design-neon *));
+@custom-variant design-corporate (&:is(.design-corporate *));
 
 @theme inline {
   --color-background: var(--background);
@@ -531,4 +534,241 @@
   -webkit-backdrop-filter: none;
   border: 1px solid var(--border);
   box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+}
+
+/* Minimal Design Style - Ultra Clean */
+.design-minimal {
+  /* Minimal color overrides */
+  --background: oklch(1 0 0);
+  --soft: oklch(0.99 0 0);
+  --medium: oklch(0.97 0 0);
+  --strong: oklch(0.94 0 0);
+  --border: oklch(0.95 0 0);
+  --glass-background: transparent;
+  --glass-border-color: transparent;
+  --glass-shadow-color: transparent;
+}
+
+.design-minimal.dark {
+  --background: oklch(0.08 0 0);
+  --soft: oklch(0.1 0 0);
+  --medium: oklch(0.12 0 0);
+  --strong: oklch(0.15 0 0);
+  --border: oklch(0.18 0 0);
+}
+
+/* Minimal specific layout styles */
+.design-minimal .minimal-layout {
+  background: var(--background);
+}
+
+.design-minimal .minimal-sidebar {
+  background: var(--background);
+  border-right: 1px solid var(--border);
+  box-shadow: none;
+}
+
+.design-minimal .minimal-nav-item {
+  transition: all 0.2s ease-in-out;
+  border-radius: 0;
+}
+
+.design-minimal .minimal-nav-item:hover {
+  background: var(--soft);
+  transform: none;
+}
+
+.design-minimal .minimal-nav-item.active {
+  background: var(--medium);
+  border-left: 3px solid var(--primary);
+  box-shadow: none;
+}
+
+/* Disable all effects for minimal style */
+.design-minimal .glass,
+.design-minimal .glass-strong,
+.design-minimal .glass-subtle {
+  background: var(--background);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border: 1px solid var(--border);
+  box-shadow: none;
+}
+
+.design-minimal .glow,
+.design-minimal .glow-strong {
+  box-shadow: none;
+}
+
+/* Neon Design Style - Cyberpunk */
+.design-neon {
+  /* Neon color scheme */
+  --background: oklch(0.05 0 0);
+  --soft: oklch(0.08 0 0);
+  --medium: oklch(0.12 0 0);
+  --strong: oklch(0.18 0 0);
+  --foreground: oklch(0.95 0.1 180);
+  --foreground-secondary: oklch(0.7 0.15 180);
+  --primary: oklch(0.7 0.3 180);
+  --primary-soft: oklch(0.6 0.25 180);
+  --primary-medium: oklch(0.8 0.35 180);
+  --primary-strong: oklch(0.9 0.4 180);
+  --accent: oklch(0.8 0.3 300);
+  --border: oklch(0.3 0.2 180);
+  --glass-background: oklch(0.1 0.2 180 / 0.1);
+  --glass-border-color: oklch(0.7 0.3 180 / 0.3);
+  --glass-shadow-color: oklch(0.7 0.3 180 / 0.2);
+}
+
+.design-neon.dark {
+  /* Same as light for neon - always dark */
+  --background: oklch(0.03 0 0);
+  --soft: oklch(0.06 0 0);
+  --medium: oklch(0.1 0 0);
+  --strong: oklch(0.15 0 0);
+}
+
+/* Neon specific layout styles */
+.design-neon .neon-layout {
+  background: radial-gradient(circle at 20% 80%, oklch(0.1 0.2 180 / 0.1) 0%, transparent 50%),
+              radial-gradient(circle at 80% 20%, oklch(0.1 0.2 300 / 0.1) 0%, transparent 50%),
+              var(--background);
+}
+
+.design-neon .neon-sidebar {
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-right: 1px solid var(--glass-border);
+  box-shadow: 0 0 30px var(--glass-shadow);
+}
+
+.design-neon .neon-nav-item {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.design-neon .neon-nav-item:hover {
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 0 20px var(--primary-medium);
+  transform: translateX(4px);
+}
+
+.design-neon .neon-nav-item.active {
+  background: var(--primary-soft);
+  box-shadow: 0 0 30px var(--primary-strong), inset 0 0 20px var(--primary-medium);
+  border-left: 3px solid var(--primary-strong);
+}
+
+/* Enhanced neon effects */
+.design-neon .glass {
+  background: var(--glass-bg);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 8px 32px var(--glass-shadow), 0 0 20px var(--primary-medium);
+}
+
+.design-neon .glass-strong {
+  background: var(--glass-bg);
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 12px 40px var(--glass-shadow), 0 0 30px var(--primary-strong);
+}
+
+.design-neon .glow {
+  box-shadow: 0 0 30px var(--primary-medium), 0 0 60px var(--primary-soft);
+}
+
+.design-neon .glow-strong {
+  box-shadow: 0 0 40px var(--primary-strong), 0 0 80px var(--primary-medium);
+}
+
+/* Corporate Design Style - Professional */
+.design-corporate {
+  /* Corporate color scheme */
+  --background: oklch(0.98 0 0);
+  --soft: oklch(0.96 0 0);
+  --medium: oklch(0.93 0 0);
+  --strong: oklch(0.88 0 0);
+  --foreground: oklch(0.2 0 0);
+  --foreground-secondary: oklch(0.45 0 0);
+  --primary: oklch(0.4 0.1 220);
+  --primary-soft: oklch(0.9 0.05 220);
+  --primary-medium: oklch(0.3 0.15 220);
+  --primary-strong: oklch(0.25 0.2 220);
+  --accent: oklch(0.92 0.05 220);
+  --border: oklch(0.85 0 0);
+  --glass-background: oklch(1 0 0 / 0.8);
+  --glass-border-color: oklch(0.85 0 0 / 0.5);
+  --glass-shadow-color: oklch(0 0 0 / 0.05);
+}
+
+.design-corporate.dark {
+  --background: oklch(0.12 0 0);
+  --soft: oklch(0.15 0 0);
+  --medium: oklch(0.18 0 0);
+  --strong: oklch(0.22 0 0);
+  --foreground: oklch(0.9 0 0);
+  --foreground-secondary: oklch(0.65 0 0);
+  --primary: oklch(0.6 0.15 220);
+  --primary-soft: oklch(0.2 0.1 220);
+  --primary-medium: oklch(0.7 0.2 220);
+  --primary-strong: oklch(0.8 0.25 220);
+  --border: oklch(0.25 0 0);
+  --glass-background: oklch(0.15 0 0 / 0.8);
+  --glass-border-color: oklch(0.3 0 0 / 0.5);
+  --glass-shadow-color: oklch(0 0 0 / 0.2);
+}
+
+/* Corporate specific layout styles */
+.design-corporate .corporate-layout {
+  background: linear-gradient(135deg, var(--background) 0%, var(--soft) 100%);
+}
+
+.design-corporate .corporate-sidebar {
+  background: var(--background);
+  border-right: 2px solid var(--border);
+  box-shadow: 2px 0 8px var(--glass-shadow-color);
+}
+
+.design-corporate .corporate-nav-item {
+  transition: all 0.2s ease-in-out;
+  border-radius: 4px;
+  margin: 2px 0;
+}
+
+.design-corporate .corporate-nav-item:hover {
+  background: var(--soft);
+  transform: none;
+  border-left: 4px solid var(--primary);
+}
+
+.design-corporate .corporate-nav-item.active {
+  background: var(--primary-soft);
+  border-left: 4px solid var(--primary);
+  color: var(--primary-strong);
+  font-weight: 600;
+  box-shadow: none;
+}
+
+/* Corporate glass effects - subtle and professional */
+.design-corporate .glass,
+.design-corporate .glass-strong,
+.design-corporate .glass-subtle {
+  background: var(--glass-bg);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 2px 8px var(--glass-shadow);
+}
+
+.design-corporate .glow {
+  box-shadow: 0 2px 12px var(--primary-soft);
+}
+
+.design-corporate .glow-strong {
+  box-shadow: 0 4px 16px var(--primary-medium);
 }
