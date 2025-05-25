@@ -1,7 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { ThemeSwitcher } from "@/components/ui/theme-switcher";
 import {
-  Sparkles,
   Mail,
   Phone,
   MapPin,
@@ -16,55 +14,7 @@ import Link from "next/link";
 
 export default function ContactPage() {
   return (
-    <div className="bg-background min-h-screen">
-      {/* Navigation */}
-      <nav className="top-0 z-50 fixed border-b border-border/50 w-full glass">
-        <div className="flex justify-between items-center mx-auto px-4 h-16 container">
-          <Link href="/" className="flex items-center space-x-2">
-            <div className="flex justify-center items-center bg-primary rounded-lg w-8 h-8">
-              <Sparkles className="w-5 h-5 text-primary-foreground" />
-            </div>
-            <span className="font-bold text-foreground text-xl">
-              MarketingPro
-            </span>
-          </Link>
-
-          <div className="hidden md:flex items-center space-x-8">
-            <Link
-              href="/features"
-              className="text-foreground-secondary hover:text-foreground transition-colors"
-            >
-              Features
-            </Link>
-            <Link
-              href="/pricing"
-              className="text-foreground-secondary hover:text-foreground transition-colors"
-            >
-              Pricing
-            </Link>
-            <Link
-              href="/about"
-              className="text-foreground-secondary hover:text-foreground transition-colors"
-            >
-              About
-            </Link>
-            <Link href="/contact" className="font-medium text-primary">
-              Contact
-            </Link>
-          </div>
-
-          <div className="flex items-center space-x-4">
-            <ThemeSwitcher />
-            <Button variant="ghost" asChild>
-              <Link href="/login">Sign In</Link>
-            </Button>
-            <Button asChild>
-              <Link href="/signup">Get Started</Link>
-            </Button>
-          </div>
-        </div>
-      </nav>
-
+    <>
       {/* Hero Section */}
       <section className="relative pt-32 pb-20 overflow-hidden">
         <div className="absolute inset-0 opacity-5 animated-gradient"></div>
@@ -357,7 +307,7 @@ export default function ContactPage() {
           </div>
         </div>
       </section>
-    </div>
+    </>
   );
 }
 

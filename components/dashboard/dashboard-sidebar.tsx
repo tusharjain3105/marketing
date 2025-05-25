@@ -1,0 +1,160 @@
+"use client";
+
+import { Button } from "@/components/ui/button";
+import { ThemeSwitcher } from "@/components/ui/theme-switcher";
+import { cn } from "@/lib/utils";
+import {
+  BarChart3,
+  Mail,
+  Users,
+  Zap,
+  Settings,
+  Home,
+  Target,
+  Calendar,
+  FileText,
+  HelpCircle,
+  Sparkles,
+  ChevronLeft,
+  ChevronRight,
+  Palette,
+} from "lucide-react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useState } from "react";
+
+export function DashboardSidebar() {
+  const [isCollapsed, setIsCollapsed] = useState(false);
+  const pathname = usePathname();
+
+  const navigation = [
+    { name: "Dashboard", href: "/dashboard", icon: Home },
+    { name: "Campaigns", href: "/dashboard/campaigns", icon: Mail },
+    { name: "Contacts", href: "/dashboard/contacts", icon: Users },
+    { name: "Automation", href: "/dashboard/automation", icon: Zap },
+    { name: "Analytics", href: "/dashboard/analytics", icon: BarChart3 },
+    { name: "Lead Generation", href: "/dashboard/leads", icon: Target },
+    { name: "Calendar", href: "/dashboard/calendar", icon: Calendar },
+    { name: "Reports", href: "/dashboard/reports", icon: FileText },
+  ];
+
+  const bottomNavigation = [
+    { name: "Settings", href: "/dashboard/settings", icon: Settings },
+    { name: "Help", href: "/dashboard/help", icon: HelpCircle },
+  ];
+
+  return (
+    <div
+      className={`relative flex flex-col h-full transition-all duration-300 glass-strong border-r border-border/50 ${
+        isCollapsed ? "w-16" : "w-64"
+      }`}
+    >
+      {/* Logo */}
+      <div className="flex justify-between items-center p-4 border-b border-border/50">
+        {!isCollapsed && (
+          <Link href="/dashboard" className="flex items-center space-x-2">
+            <div className="flex justify-center items-center bg-primary rounded-lg w-8 h-8">
+              <Sparkles className="w-5 h-5 text-primary-foreground" />
+            </div>
+            <span className="font-bold text-foreground text-xl">
+              MarketingPro
+            </span>
+          </Link>
+        )}
+
+        {isCollapsed && (
+          <Link href="/dashboard" className="flex justify-center items-center">
+            <div className="flex justify-center items-center bg-primary rounded-lg w-8 h-8">
+              <Sparkles className="w-5 h-5 text-primary-foreground" />
+            </div>
+          </Link>
+        )}
+
+        <Button
+          variant="ghost"
+          size="sm"
+          onClick={() => setIsCollapsed(!isCollapsed)}
+          className={isCollapsed ? "w-full justify-center" : "ml-auto"}
+        >
+          {isCollapsed ? (
+            <ChevronRight className="w-4 h-4" />
+          ) : (
+            <ChevronLeft className="w-4 h-4" />
+          )}
+        </Button>
+      </div>
+
+      {/* Navigation */}
+      <nav className="flex-1 space-y-2 p-4">
+        {navigation.map((item) => {
+          const isActive = pathname === item.href;
+          return (
+            <Link
+              key={item.name}
+              href={item.href}
+              className={cn(
+                `flex items-center gap-3 px-3 py-2 rounded-lg transition-all duration-200 group ${
+                  isActive
+                    ? "bg-primary/20 text-primary glow"
+                    : "text-foreground-secondary hover:text-foreground hover:bg-soft/50"
+                }`,
+                isCollapsed && "justify-center px-0",
+              )}
+            >
+              <item.icon className="flex-shrink-0 w-5 h-5" />
+              {!isCollapsed && <span className="font-medium">{item.name}</span>}
+            </Link>
+          );
+        })}
+      </nav>
+
+      {/* Bottom Navigation */}
+      <div className="space-y-2 p-4 border-t border-border/50">
+        {bottomNavigation.map((item) => {
+          const isActive = pathname === item.href;
+          return (
+            <Link
+              key={item.name}
+              href={item.href}
+              className={cn(
+                `flex items-center gap-3 px-3 py-2 rounded-lg transition-all duration-200 ${
+                  isActive
+                    ? "bg-primary/20 text-primary"
+                    : "text-foreground-secondary hover:text-foreground hover:bg-soft/50"
+                }`,
+                isCollapsed && "justify-center px-0",
+              )}
+            >
+              <item.icon className="flex-shrink-0 w-5 h-5" />
+              {!isCollapsed && <span className="font-medium">{item.name}</span>}
+            </Link>
+          );
+        })}
+
+        <div className="pt-4">
+          {!isCollapsed ? (
+            <>
+              <ThemeSwitcher
+                trigger={
+                  <button
+                    className={cn(
+                      "flex items-center gap-3 px-3 py-2 rounded-lg transition-all duration-200 text-foreground-secondary hover:text-foreground hover:bg-soft/50 w-full",
+                      isCollapsed && "justify-center px-0",
+                    )}
+                  >
+                    <Palette className="flex-shrink-0 w-4 h-4" />
+                    <span className="font-medium">Toggle theme</span>
+                  </button>
+                }
+              />
+            </>
+          ) : (
+            <div className="flex justify-center">
+              <ThemeSwitcher />
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}

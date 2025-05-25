@@ -20,7 +20,7 @@ import {
 import { Check, Monitor, Moon, Palette, Sun } from "lucide-react";
 import { useTheme as useNextTheme } from "next-themes";
 
-export function ThemeSwitcher() {
+export function ThemeSwitcher({ trigger }: { trigger?: React.ReactNode }) {
   const { theme, setTheme } = useNextTheme();
   const { colorScheme, setColorScheme } = useTheme();
 
@@ -42,10 +42,14 @@ export function ThemeSwitcher() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="ghost" size="sm" className="px-0 w-9 h-9">
-          <Palette className="w-4 h-4" />
-          <span className="sr-only">Toggle theme</span>
-        </Button>
+        {trigger ? (
+          trigger
+        ) : (
+          <Button variant="ghost" size="sm" className="px-0 w-9 h-9">
+            <Palette className="w-4 h-4" />
+            <span className="sr-only">Toggle theme</span>
+          </Button>
+        )}
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-56">
         <DropdownMenuLabel>Appearance</DropdownMenuLabel>

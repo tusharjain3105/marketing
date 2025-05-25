@@ -4,7 +4,7 @@ import { NextResponse } from "next/server";
 
 const AUTHENTICATION_ROUTES = ["/login", "/register", "/forgot-password"];
 
-const PROTECTED_ROUTES = ["/dashboard"];
+const PROTECTED_ROUTES = ["/protected"];
 
 const checkRoute = (request: NextRequest) => {
   const path = request.nextUrl.pathname;
