@@ -50,11 +50,9 @@ export default function PricingPage() {
               >
                 Yearly
               </span>
-              {isYearly && (
-                <span className="bg-primary/10 px-2 py-1 rounded-full font-medium text-primary text-xs">
-                  Save 20%
-                </span>
-              )}
+              <span className="bg-primary/10 px-2 py-1 rounded-full font-medium text-primary text-xs">
+                Save 20%
+              </span>
             </div>
           </div>
         </div>
