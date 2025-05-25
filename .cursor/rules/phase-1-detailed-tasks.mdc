@@ -1,0 +1,214 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# Phase 1: Foundation & Authentication - Detailed Task Breakdown
+
+## Week 1: Database & Environment Setup
+
+### Day 1-2: Database Configuration
+- [ ] **Set up PostgreSQL database**
+  - [ ] Install PostgreSQL locally or set up cloud instance (Supabase/Neon)
+  - [ ] Create database named `marketing-new`
+  - [ ] Configure database user with appropriate permissions
+  - [ ] Test database connection
+
+- [ ] **Environment Variables Setup**
+  - [ ] Create `.env.local` file in project root
+  - [ ] Add database URL: `DATABASE_URL=postgresql://tusharjain:admin@localhost:5432/marketing-new`
+  - [ ] Add NextAuth configuration variables
+  - [ ] Add UploadThing API keys
+  - [ ] Add Resend API key for emails
+
+- [ ] **Prisma Database Setup**
+  - [ ] Run `npx prisma generate` to generate Prisma client
+  - [ ] Run `npx prisma db push` to sync schema with database
+  - [ ] Verify all tables are created correctly
+  - [ ] Create initial seed data script in `prisma/seed.ts`
+
+### Day 3: Core Configuration Files
+
+- [ ] **Update Zod Schemas** in [lib/zod-schema.ts](mdc:lib/zod-schema.ts)
+  ```typescript
+  // Authentication schemas
+  export const loginSchema = z.object({
+    email: z.string().email(),
+    password: z.string().min(6)
+  })
+  
+  export const signupSchema = z.object({
+    name: z.string().min(2),
+    email: z.string().email(),
+    password: z.string().min(6)
+  })
+  
+  export const forgotPasswordSchema = z.object({
+    email: z.string().email()
+  })
+  ```
+
+- [ ] **Update Configuration** in [lib/config.ts](mdc:lib/config.ts)
+  - [ ] Add authentication settings
+  - [ ] Add email configuration
+  - [ ] Add file upload limits
+  - [ ] Add application constants
+
+- [ ] **Update Types** in [lib/types.ts](mdc:lib/types.ts)
+  - [ ] Add User types
+  - [ ] Add Authentication types
+  - [ ] Add API response types
+
+## Week 2: Authentication System Implementation
+
+### Day 4-5: Core Authentication Logic
+
+- [ ] **Complete Authentication Actions** in [actions/auth.ts](mdc:actions/auth.ts)
+  - [ ] Implement `loginUser` function with JWT/session
+  - [ ] Implement `signupUser` function with email verification
+  - [ ] Implement `forgotPassword` function
+  - [ ] Implement `resetPassword` function
+  - [ ] Add password hashing with bcryptjs
+  - [ ] Add email verification logic
+
+- [ ] **User Management Actions** in [actions/user.ts](mdc:actions/user.ts)
+  - [ ] Implement `getUserProfile` function
+  - [ ] Implement `updateUserProfile` function
+  - [ ] Implement `changePassword` function
+  - [ ] Implement `uploadAvatar` function
+
+### Day 6-7: Authentication UI Components
+
+- [ ] **Login Page** in `app/(auth)/login/page.tsx`
+  - [ ] Create login form with email/password fields
+  - [ ] Add form validation using react-hook-form + Zod
+  - [ ] Implement login submission logic
+  - [ ] Add "Remember me" functionality
+  - [ ] Add OAuth login buttons (Google, GitHub)
+  - [ ] Add loading states and error handling
+
+- [ ] **Signup Page** in `app/(auth)/signup/page.tsx`
+  - [ ] Create signup form with name/email/password fields
+  - [ ] Add password strength indicator
+  - [ ] Add terms and conditions checkbox
+  - [ ] Implement signup submission logic
+  - [ ] Add email verification notice
+  - [ ] Add OAuth signup options
+
+- [ ] **Forgot Password Page** in `app/(auth)/forgot-password/page.tsx`
+  - [ ] Create email input form
+  - [ ] Add form validation
+  - [ ] Implement password reset request
+  - [ ] Add success/error messages
+  - [ ] Create reset password confirmation page
+
+### Day 8-9: Protected Routes & Middleware
+
+- [ ] **Update Middleware** in [middleware.ts](mdc:middleware.ts)
+  - [ ] Add authentication checks
+  - [ ] Implement route protection
+  - [ ] Add role-based access control
+  - [ ] Handle redirects for unauthenticated users
+
+- [ ] **Create Auth HOC** in `hoc/with-auth.tsx`
+  - [ ] Create higher-order component for protected pages
+  - [ ] Add loading states for auth checks
+  - [ ] Handle authentication redirects
+
+- [ ] **Auth Provider** in `providers/auth-provider.tsx`
+  - [ ] Create React context for authentication state
+  - [ ] Implement user session management
+  - [ ] Add authentication methods to context
+
+### Day 10: UI Components & Layout
+
+- [ ] **Navigation Components**
+  - [ ] Update header component with auth states
+  - [ ] Add user dropdown menu
+  - [ ] Implement logout functionality
+  - [ ] Add profile navigation links
+
+- [ ] **Form Components** in `components/ui/`
+  - [ ] Create reusable Input component with validation
+  - [ ] Create Button component with loading states
+  - [ ] Create Form wrapper component
+  - [ ] Add error message components
+
+- [ ] **Layout Updates**
+  - [ ] Update main layout to handle auth states
+  - [ ] Add conditional navigation based on user role
+  - [ ] Implement theme switching functionality
+
+## Testing & Validation Tasks
+
+### Authentication Testing
+- [ ] **Unit Tests**
+  - [ ] Test authentication actions
+  - [ ] Test form validation schemas
+  - [ ] Test utility functions
+
+- [ ] **Integration Tests**
+  - [ ] Test login/signup flow
+  - [ ] Test password reset flow
+  - [ ] Test protected route access
+
+- [ ] **Manual Testing**
+  - [ ] Test all authentication flows in browser
+  - [ ] Verify email sending functionality
+  - [ ] Test responsive design on mobile devices
+
+## Files to Create/Update
+
+### New Files to Create:
+- `prisma/seed.ts` - Database seeding script
+- `providers/auth-provider.tsx` - Authentication context
+- `hoc/with-auth.tsx` - Authentication HOC
+- `components/ui/input.tsx` - Reusable input component
+- `components/ui/button.tsx` - Reusable button component
+- `components/ui/form.tsx` - Form wrapper component
+- `app/(auth)/verify-email/page.tsx` - Email verification page
+- `app/(auth)/reset-password/page.tsx` - Password reset page
+
+### Files to Update:
+- [lib/zod-schema.ts](mdc:lib/zod-schema.ts) - Add authentication schemas
+- [lib/config.ts](mdc:lib/config.ts) - Add auth configuration
+- [lib/types.ts](mdc:lib/types.ts) - Add authentication types
+- [actions/auth.ts](mdc:actions/auth.ts) - Complete authentication logic
+- [actions/user.ts](mdc:actions/user.ts) - Add user management functions
+- [middleware.ts](mdc:middleware.ts) - Add route protection
+- `app/(auth)/login/page.tsx` - Complete login implementation
+- `app/(auth)/signup/page.tsx` - Complete signup implementation
+- `app/(auth)/forgot-password/page.tsx` - Complete forgot password
+
+## Environment Variables Needed:
+```env
+# Database
+DATABASE_URL=postgresql://tusharjain:admin@localhost:5432/marketing-new
+
+# Authentication
+NEXTAUTH_SECRET=your-super-secret-jwt-key
+NEXTAUTH_URL=http://localhost:3000
+
+# Email
+RESEND_API_KEY=re_your_resend_api_key
+
+# File Upload
+UPLOADTHING_SECRET=sk_live_your_uploadthing_secret
+UPLOADTHING_APP_ID=your_uploadthing_app_id
+
+# OAuth (Optional for Phase 1)
+GOOGLE_CLIENT_ID=your_google_client_id
+GOOGLE_CLIENT_SECRET=your_google_client_secret
+GITHUB_CLIENT_ID=your_github_client_id
+GITHUB_CLIENT_SECRET=your_github_client_secret
+```
+
+## Success Criteria for Phase 1:
+- [ ] Users can successfully register with email verification
+- [ ] Users can log in and log out
+- [ ] Password reset functionality works end-to-end
+- [ ] Protected routes are properly secured
+- [ ] User profile management is functional
+- [ ] All forms have proper validation and error handling
+- [ ] Responsive design works on mobile and desktop
+- [ ] All authentication flows are tested and working

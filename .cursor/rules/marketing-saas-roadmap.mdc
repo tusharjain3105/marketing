@@ -1,0 +1,301 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# Marketing SaaS Development Roadmap
+
+## Project Overview
+Building a comprehensive marketing SaaS platform with blog management, user authentication, email marketing, and content creation tools using Next.js 15, Prisma, and modern React patterns.
+
+## Current State Analysis
+### ✅ Already Implemented
+- Basic Next.js 15 project structure with App Router
+- Prisma schema with User, Blog, Media, Newsletter models
+- TipTap rich text editor integration
+- Authentication scaffolding (login, signup, forgot-password routes)
+- Blog management foundation
+- File upload with UploadThing
+- Email templates with React Email
+- Tailwind CSS styling setup
+
+### 🔧 Needs Implementation
+- Complete authentication system
+- User dashboard and management
+- Advanced blog features
+- Email marketing campaigns
+- Analytics and reporting
+- Payment integration
+- Multi-tenancy support
+- Advanced marketing tools
+
+## Development Phases
+
+### Phase 1: Foundation & Authentication (Weeks 1-2)
+**Priority: Critical**
+
+#### Database & Environment Setup
+- [ ] Set up PostgreSQL database
+- [ ] Configure environment variables in `.env.local`
+- [ ] Run Prisma migrations
+- [ ] Seed initial data
+
+#### Authentication System
+- [ ] Complete login functionality with JWT/session management
+- [ ] Implement signup with email verification
+- [ ] Build forgot password flow with email reset
+- [ ] Add OAuth providers (Google, GitHub)
+- [ ] Implement role-based access control (ADMIN, USER)
+- [ ] Create protected route middleware
+- [ ] Build user profile management
+
+#### Core UI Components
+- [ ] Complete Shadcn UI component library setup
+- [ ] Create reusable form components with validation
+- [ ] Build navigation and layout components
+- [ ] Implement theme switching (dark/light mode)
+- [ ] Create loading states and error boundaries
+
+### Phase 2: Blog Management System (Weeks 3-4)
+**Priority: High**
+
+#### Blog Creation & Management
+- [ ] Complete TipTap editor with all extensions
+- [ ] Implement blog post creation with auto-save
+- [ ] Build blog post editing interface
+- [ ] Add image upload and management
+- [ ] Create blog post preview functionality
+- [ ] Implement draft/publish workflow
+- [ ] Add blog post scheduling
+- [ ] Build tag management system
+
+#### Blog Display & SEO
+- [ ] Create public blog listing page
+- [ ] Build individual blog post pages
+- [ ] Implement SEO optimization (meta tags, structured data)
+- [ ] Add social media sharing
+- [ ] Create blog search and filtering
+- [ ] Implement blog categories
+- [ ] Add reading time estimation
+- [ ] Build related posts functionality
+
+### Phase 3: User Dashboard & Management (Weeks 5-6)
+**Priority: High**
+
+#### User Dashboard
+- [ ] Create main dashboard with analytics overview
+- [ ] Build user profile management
+- [ ] Implement account settings
+- [ ] Add activity feed
+- [ ] Create notification system
+- [ ] Build user preferences
+
+#### Admin Panel
+- [ ] Create admin dashboard
+- [ ] Build user management interface
+- [ ] Implement content moderation tools
+- [ ] Add system analytics
+- [ ] Create admin settings panel
+
+### Phase 4: Email Marketing System (Weeks 7-8)
+**Priority: High**
+
+#### Newsletter Management
+- [ ] Expand Newsletter model with segments
+- [ ] Build newsletter subscription forms
+- [ ] Implement double opt-in process
+- [ ] Create unsubscribe functionality
+- [ ] Add subscriber management
+- [ ] Build email list segmentation
+
+#### Email Campaigns
+- [ ] Create email campaign builder
+- [ ] Implement email templates library
+- [ ] Add drag-and-drop email editor
+- [ ] Build campaign scheduling
+- [ ] Implement A/B testing for emails
+- [ ] Add email analytics and tracking
+- [ ] Create automated email sequences
+
+### Phase 5: Advanced Marketing Tools (Weeks 9-10)
+**Priority: Medium**
+
+#### Lead Generation
+- [ ] Build landing page builder
+- [ ] Create lead capture forms
+- [ ] Implement pop-ups and modals
+- [ ] Add lead scoring system
+- [ ] Build lead nurturing workflows
+
+#### Content Marketing
+- [ ] Create content calendar
+- [ ] Build social media scheduling
+- [ ] Implement content templates
+- [ ] Add content performance analytics
+- [ ] Create content collaboration tools
+
+### Phase 6: Analytics & Reporting (Weeks 11-12)
+**Priority: Medium**
+
+#### Analytics Dashboard
+- [ ] Implement Google Analytics integration
+- [ ] Build custom analytics tracking
+- [ ] Create performance dashboards
+- [ ] Add conversion tracking
+- [ ] Implement heatmap integration
+- [ ] Build custom reports
+
+#### Reporting System
+- [ ] Create automated report generation
+- [ ] Build export functionality (PDF, CSV)
+- [ ] Implement scheduled reports
+- [ ] Add data visualization charts
+- [ ] Create comparative analytics
+
+### Phase 7: Payment & Subscription (Weeks 13-14)
+**Priority: Medium**
+
+#### Payment Integration
+- [ ] Integrate Stripe for payments
+- [ ] Create subscription plans
+- [ ] Build billing management
+- [ ] Implement usage tracking
+- [ ] Add invoice generation
+- [ ] Create payment analytics
+
+#### Subscription Management
+- [ ] Build plan upgrade/downgrade
+- [ ] Implement usage limits
+- [ ] Add billing notifications
+- [ ] Create subscription analytics
+
+### Phase 8: Advanced Features (Weeks 15-16)
+**Priority: Low**
+
+#### Multi-tenancy
+- [ ] Implement workspace/organization model
+- [ ] Build team collaboration features
+- [ ] Add role-based permissions
+- [ ] Create workspace switching
+- [ ] Implement data isolation
+
+#### API & Integrations
+- [ ] Build REST API endpoints
+- [ ] Create API documentation
+- [ ] Implement webhook system
+- [ ] Add third-party integrations
+- [ ] Build Zapier integration
+
+### Phase 9: Performance & Security (Weeks 17-18)
+**Priority: Critical**
+
+#### Performance Optimization
+- [ ] Implement caching strategies
+- [ ] Optimize database queries
+- [ ] Add CDN integration
+- [ ] Implement lazy loading
+- [ ] Optimize bundle size
+- [ ] Add performance monitoring
+
+#### Security & Compliance
+- [ ] Implement security headers
+- [ ] Add rate limiting
+- [ ] Create audit logging
+- [ ] Implement GDPR compliance
+- [ ] Add data backup systems
+- [ ] Security testing and penetration testing
+
+### Phase 10: Testing & Deployment (Weeks 19-20)
+**Priority: Critical**
+
+#### Testing
+- [ ] Write unit tests for all components
+- [ ] Create integration tests
+- [ ] Implement E2E testing
+- [ ] Add performance testing
+- [ ] Create accessibility testing
+
+#### Deployment & DevOps
+- [ ] Set up CI/CD pipeline
+- [ ] Configure production environment
+- [ ] Implement monitoring and logging
+- [ ] Set up error tracking
+- [ ] Create backup and recovery procedures
+- [ ] Deploy to production
+
+## Technical Specifications
+
+### Database Schema Extensions Needed
+```prisma
+model Organization {
+  id        String   @id @default(uuid())
+  name      String
+  slug      String   @unique
+  users     User[]
+  blogs     Blog[]
+  campaigns EmailCampaign[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model EmailCampaign {
+  id             String   @id @default(uuid())
+  name           String
+  subject        String
+  content        String
+  scheduledAt    DateTime?
+  sentAt         DateTime?
+  organizationId String
+  organization   Organization @relation(fields: [organizationId], references: [id])
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+}
+
+model Subscription {
+  id           String   @id @default(uuid())
+  userId       String   @unique
+  user         User     @relation(fields: [userId], references: [id])
+  planId       String
+  status       String
+  currentPeriodStart DateTime
+  currentPeriodEnd   DateTime
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+```
+
+### Key Dependencies to Add
+- `@stripe/stripe-js` - Payment processing
+- `@vercel/analytics` - Analytics tracking
+- `@sentry/nextjs` - Error monitoring
+- `nodemailer` - Email sending
+- `bull` - Job queue for background tasks
+- `redis` - Caching and session storage
+
+### Environment Variables Required
+```env
+DATABASE_URL=postgresql://username:password@localhost:5432/marketing-new
+NEXTAUTH_SECRET=your-secret-key
+NEXTAUTH_URL=http://localhost:3000
+STRIPE_SECRET_KEY=sk_test_...
+STRIPE_PUBLISHABLE_KEY=pk_test_...
+RESEND_API_KEY=re_...
+UPLOADTHING_SECRET=sk_live_...
+UPLOADTHING_APP_ID=your-app-id
+```
+
+## Success Metrics
+- User registration and retention rates
+- Blog post creation and engagement
+- Email campaign performance
+- Revenue growth and subscription metrics
+- System performance and uptime
+- User satisfaction scores
+
+## Risk Mitigation
+- Regular security audits
+- Performance monitoring
+- Backup and disaster recovery
+- Scalability planning
+- User feedback integration
+- Continuous testing and quality assurance

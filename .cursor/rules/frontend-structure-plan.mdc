@@ -1,0 +1,474 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# Frontend Structure Plan - Marketing SaaS Platform
+
+## Role & Permission Management System
+
+### Role Hierarchy
+```
+Superadmin (Platform Level)
+├── Owner (Organization Level)
+    ├── Admin (Organization Level)
+    ├── Manager (Department Level)
+    ├── Editor (Content Level)
+    └── Viewer (Read-only Level)
+```
+
+### Role Definitions & Permissions
+
+#### **Superadmin** (Platform Owner - Our Brand)
+- **Full platform access** across all organizations
+- **System configuration** and maintenance
+- **Organization management** (create, suspend, delete)
+- **Billing and subscription** oversight
+- **Platform analytics** and reporting
+- **Feature flag** management
+- **Support ticket** management
+
+#### **Owner** (Client's Account Owner)
+- **Full organization access** within their account
+- **Billing and subscription** management for their org
+- **User management** (invite, remove, role assignment)
+- **Organization settings** and branding
+- **Data export** and backup
+- **Integration management**
+- **All content and campaign** permissions
+
+#### **Admin** (Organization Administrator)
+- **User management** within organization
+- **Content management** (all blogs, campaigns)
+- **Campaign management** (create, edit, delete, send)
+- **Analytics access** (organization level)
+- **Settings management** (except billing)
+- **Template management**
+
+#### **Manager** (Department/Team Manager)
+- **Team member management** (limited)
+- **Content approval** workflow
+- **Campaign approval** and scheduling
+- **Team analytics** and reporting
+- **Template creation** and management
+- **Lead management**
+
+#### **Editor** (Content Creator)
+- **Content creation** and editing
+- **Draft management**
+- **Media library** access
+- **Template usage**
+- **Basic analytics** (own content)
+- **Comment and collaboration**
+
+#### **Viewer** (Read-only Access)
+- **View-only access** to content
+- **Basic analytics** viewing
+- **Comment on content** (if enabled)
+- **Export reports** (limited)
+
+## Page Structure & Organization
+
+### **Landing Pages Group**
+```
+/
+├── / (Homepage)
+├── /features
+├── /pricing
+├── /about
+├── /contact
+├── /demo
+├── /case-studies
+├── /integrations
+├── /resources
+└── /blog (Public blog)
+```
+
+### **Authentication Group**
+```
+/auth
+├── /login
+├── /signup
+├── /forgot-password
+├── /reset-password
+├── /verify-email
+├── /invite-accept
+└── /oauth-callback
+```
+
+### **Dashboard Group** (Role-based access)
+```
+/dashboard
+├── / (Main dashboard - role-specific)
+├── /analytics
+├── /profile
+├── /settings
+└── /notifications
+```
+
+### **Content Management Group**
+```
+/content
+├── /blogs
+│   ├── / (Blog list)
+│   ├── /new
+│   ├── /[id]/edit
+│   ├── /[id]/preview
+│   └── /drafts
+├── /media
+│   ├── / (Media library)
+│   └── /upload
+└── /templates
+    ├── / (Template library)
+    ├── /new
+    └── /[id]/edit
+```
+
+### **Email Campaign Group**
+```
+/campaigns
+├── / (Campaign list)
+├── /new
+├── /[id]/edit
+├── /[id]/preview
+├── /[id]/analytics
+├── /templates
+│   ├── / (Email templates)
+│   ├── /new
+│   └── /[id]/edit
+└── /automation
+    ├── / (Automation workflows)
+    ├── /new
+    └── /[id]/edit
+```
+
+### **Audience Management Group**
+```
+/audience
+├── / (Subscriber list)
+├── /segments
+│   ├── / (Segment list)
+│   ├── /new
+│   └── /[id]/edit
+├── /import
+├── /export
+└── /analytics
+```
+
+### **Lead Generation Group**
+```
+/leads
+├── / (Lead dashboard)
+├── /forms
+│   ├── / (Form list)
+│   ├── /new
+│   └── /[id]/edit
+├── /landing-pages
+│   ├── / (Landing page list)
+│   ├── /new
+│   └── /[id]/edit
+└── /analytics
+```
+
+### **Analytics & Reporting Group**
+```
+/analytics
+├── / (Overview dashboard)
+├── /content
+├── /campaigns
+├── /audience
+├── /leads
+├── /revenue
+└── /reports
+    ├── / (Report list)
+    ├── /new
+    └── /[id]
+```
+
+### **Organization Management Group** (Owner/Admin only)
+```
+/organization
+├── / (Organization overview)
+├── /team
+│   ├── / (Team members)
+│   ├── /invite
+│   └── /roles
+├── /billing
+│   ├── / (Billing overview)
+│   ├── /subscription
+│   ├── /invoices
+│   └── /payment-methods
+├── /settings
+│   ├── / (General settings)
+│   ├── /branding
+│   ├── /integrations
+│   └── /api-keys
+└── /usage
+```
+
+### **Admin Panel Group** (Superadmin only)
+```
+/admin
+├── / (Admin dashboard)
+├── /organizations
+│   ├── / (Organization list)
+│   ├── /[id] (Organization details)
+│   └── /new
+├── /users
+│   ├── / (User list)
+│   └── /[id] (User details)
+├── /billing
+│   ├── / (Platform billing)
+│   ├── /subscriptions
+│   └── /revenue
+├── /support
+│   ├── / (Support tickets)
+│   └── /[id] (Ticket details)
+├── /analytics
+│   ├── / (Platform analytics)
+│   ├── /usage
+│   └── /performance
+└── /settings
+    ├── / (Platform settings)
+    ├── /features
+    └── /maintenance
+```
+
+### **Legal Pages Group**
+```
+/legal
+├── /privacy-policy
+├── /terms-of-service
+├── /cookie-policy
+├── /gdpr
+├── /security
+└── /compliance
+```
+
+### **Miscellaneous Pages Group**
+```
+/misc
+├── /unsubscribe
+├── /email-preferences
+├── /maintenance
+├── /404
+├── /500
+├── /coming-soon
+└── /thank-you
+```
+
+## Custom Components Architecture
+
+### **Authentication Components**
+```
+components/auth/
+├── login-form.tsx
+├── signup-form.tsx
+├── forgot-password-form.tsx
+├── reset-password-form.tsx
+├── email-verification.tsx
+├── oauth-buttons.tsx
+├── invite-form.tsx
+└── role-guard.tsx (Permission wrapper)
+```
+
+### **Dashboard Components**
+```
+components/dashboard/
+├── dashboard-shell.tsx (Main layout)
+├── stats-cards.tsx
+├── activity-feed.tsx
+├── quick-actions.tsx
+├── recent-content.tsx
+├── performance-charts.tsx
+└── role-specific-widgets/
+    ├── superadmin-widget.tsx
+    ├── owner-widget.tsx
+    ├── admin-widget.tsx
+    ├── manager-widget.tsx
+    ├── editor-widget.tsx
+    └── viewer-widget.tsx
+```
+
+### **Content Management Components**
+```
+components/content/
+├── blog-editor.tsx (TipTap integration)
+├── blog-list.tsx
+├── blog-card.tsx
+├── blog-preview.tsx
+├── media-library.tsx
+├── media-uploader.tsx
+├── template-selector.tsx
+├── content-scheduler.tsx
+├── seo-optimizer.tsx
+└── collaboration-panel.tsx
+```
+
+### **Email Campaign Components**
+```
+components/campaigns/
+├── campaign-builder.tsx
+├── email-editor.tsx (Drag & drop)
+├── campaign-list.tsx
+├── campaign-card.tsx
+├── template-library.tsx
+├── automation-builder.tsx
+├── send-scheduler.tsx
+├── ab-test-setup.tsx
+├── campaign-analytics.tsx
+└── deliverability-checker.tsx
+```
+
+### **Audience Management Components**
+```
+components/audience/
+├── subscriber-list.tsx
+├── subscriber-card.tsx
+├── segment-builder.tsx
+├── import-wizard.tsx
+├── export-dialog.tsx
+├── subscription-forms.tsx
+├── audience-analytics.tsx
+└── gdpr-compliance.tsx
+```
+
+### **Lead Generation Components**
+```
+components/leads/
+├── form-builder.tsx
+├── landing-page-builder.tsx
+├── lead-capture-widget.tsx
+├── popup-builder.tsx
+├── lead-scoring.tsx
+├── lead-nurturing.tsx
+├── conversion-tracking.tsx
+└── lead-analytics.tsx
+```
+
+### **Analytics Components**
+```
+components/analytics/
+├── analytics-dashboard.tsx
+├── chart-widgets.tsx
+├── report-builder.tsx
+├── data-table.tsx
+├── filter-panel.tsx
+├── export-options.tsx
+├── real-time-stats.tsx
+└── comparison-charts.tsx
+```
+
+### **Organization Management Components**
+```
+components/organization/
+├── team-management.tsx
+├── role-assignment.tsx
+├── invitation-manager.tsx
+├── billing-dashboard.tsx
+├── subscription-manager.tsx
+├── usage-tracker.tsx
+├── settings-panel.tsx
+└── branding-customizer.tsx
+```
+
+### **Admin Panel Components** (Superadmin)
+```
+components/admin/
+├── admin-dashboard.tsx
+├── organization-manager.tsx
+├── user-manager.tsx
+├── platform-analytics.tsx
+├── support-center.tsx
+├── feature-flags.tsx
+├── system-health.tsx
+└── maintenance-mode.tsx
+```
+
+### **Shared Business Components**
+```
+components/shared/
+├── role-based-renderer.tsx
+├── permission-gate.tsx
+├── data-table-advanced.tsx
+├── file-uploader.tsx
+├── rich-text-editor.tsx
+├── date-range-picker.tsx
+├── search-filter.tsx
+├── pagination-advanced.tsx
+├── export-button.tsx
+├── notification-center.tsx
+├── help-center.tsx
+└── onboarding-flow.tsx
+```
+
+## Additional Suggestions & Recommendations
+
+### **Enhanced Role System**
+1. **Custom Roles**: Allow organizations to create custom roles with specific permissions
+2. **Department-based Access**: Roles can be scoped to specific departments/teams
+3. **Time-based Permissions**: Temporary access grants for contractors/consultants
+4. **IP Restrictions**: Role-based IP whitelisting for security
+
+### **Advanced Features to Consider**
+1. **White-label Solution**: Allow owners to customize branding completely
+2. **Multi-language Support**: Internationalization for global clients
+3. **API Access Levels**: Different API rate limits based on roles
+4. **Audit Logging**: Track all actions by role for compliance
+5. **Workflow Approvals**: Content/campaign approval chains based on roles
+
+### **User Experience Enhancements**
+1. **Role-based Onboarding**: Different onboarding flows for each role
+2. **Contextual Help**: Role-specific help and documentation
+3. **Progressive Disclosure**: Show features based on user's role and experience
+4. **Keyboard Shortcuts**: Power user features for frequent actions
+5. **Mobile-first Design**: Ensure all roles can work effectively on mobile
+
+### **Security Considerations**
+1. **Two-factor Authentication**: Mandatory for admin roles
+2. **Session Management**: Role-based session timeouts
+3. **Data Encryption**: Role-based data access encryption
+4. **Compliance Tools**: GDPR, CCPA compliance features
+5. **Security Monitoring**: Real-time security alerts for admin roles
+
+### **Performance Optimizations**
+1. **Role-based Code Splitting**: Load only relevant components
+2. **Permission Caching**: Cache user permissions for faster checks
+3. **Lazy Loading**: Load dashboard widgets based on role
+4. **Optimistic Updates**: Better UX for frequent actions
+5. **Offline Support**: Basic functionality when offline
+
+### **Integration Capabilities**
+1. **Zapier Integration**: Connect with 3000+ apps
+2. **Webhook System**: Real-time data sync
+3. **API Documentation**: Role-based API access docs
+4. **SSO Integration**: Enterprise single sign-on
+5. **CRM Integrations**: Salesforce, HubSpot, etc.
+
+## Development Priority Order
+
+### **Phase 1: Core Structure** (Week 1-2)
+1. Authentication system with role management
+2. Basic dashboard layouts for each role
+3. Navigation and permission gates
+4. Core UI components
+
+### **Phase 2: Content Management** (Week 3-4)
+1. Blog creation and editing system
+2. Media library and file management
+3. Template system
+4. Content collaboration features
+
+### **Phase 3: Email Campaigns** (Week 5-6)
+1. Email editor and template builder
+2. Campaign management system
+3. Audience management
+4. Basic analytics
+
+### **Phase 4: Advanced Features** (Week 7-8)
+1. Lead generation tools
+2. Advanced analytics
+3. Organization management
+4. Admin panel for superadmins
+
+This structure provides a scalable foundation that can grow with your platform while maintaining clear separation of concerns and role-based access control.
