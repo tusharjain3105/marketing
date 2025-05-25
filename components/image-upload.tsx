@@ -82,6 +82,7 @@ const ImageUpload = ({
       dataTransfer.items.add(file);
       if (fileInputRef.current) {
         fileInputRef.current.files = dataTransfer.files;
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         handleFileChange({ target: { files: dataTransfer.files } } as any);
       }
     }

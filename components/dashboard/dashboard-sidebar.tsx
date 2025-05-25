@@ -18,6 +18,7 @@ import {
   ChevronLeft,
   ChevronRight,
   Palette,
+  MessageCircle,
 } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -33,6 +34,7 @@ export function DashboardSidebar() {
     { name: "Contacts", href: "/dashboard/contacts", icon: Users },
     { name: "Automation", href: "/dashboard/automation", icon: Zap },
     { name: "Analytics", href: "/dashboard/analytics", icon: BarChart3 },
+    { name: "AI Chatbot", href: "/dashboard/chatbot", icon: MessageCircle },
     { name: "Lead Generation", href: "/dashboard/leads", icon: Target },
     { name: "Calendar", href: "/dashboard/calendar", icon: Calendar },
     { name: "Reports", href: "/dashboard/reports", icon: FileText },

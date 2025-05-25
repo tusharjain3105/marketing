@@ -19,6 +19,7 @@ import {
   ChevronLeft,
   ChevronRight,
   Palette,
+  MessageCircle,
 } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -34,6 +35,7 @@ export function AdminSidebar() {
     { name: "Organizations", href: "/admin/organizations", icon: Building },
     { name: "Subscriptions", href: "/admin/subscriptions", icon: CreditCard },
     { name: "Analytics", href: "/admin/analytics", icon: BarChart3 },
+    { name: "Chat Management", href: "/admin/chat", icon: MessageCircle },
     { name: "System Health", href: "/admin/system", icon: Activity },
     { name: "Email Logs", href: "/admin/emails", icon: Mail },
     { name: "Security", href: "/admin/security", icon: Shield },

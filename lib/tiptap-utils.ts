@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import type { Attrs, Node } from "@tiptap/pm/model";
 import type { Editor } from "@tiptap/react";
 

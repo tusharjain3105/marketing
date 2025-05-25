@@ -6,6 +6,7 @@ import { ClientLayout } from "@/layout.client";
 import { Suspense, unstable_ViewTransition as ViewTransition } from "react";
 import "./globals.css";
 import { UTSSR } from "@/components/uploadthing/SSRPlugin";
+import { ChatbotWidget } from "@/components/chatbot/chatbot-widget";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -37,7 +38,10 @@ export default function RootLayout({
         </Suspense>
         <ViewTransition>
           <Providers>
-            <ClientLayout>{children}</ClientLayout>
+            <ClientLayout>
+              {children}
+              <ChatbotWidget />
+            </ClientLayout>
           </Providers>
         </ViewTransition>
       </body>
