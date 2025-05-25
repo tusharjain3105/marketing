@@ -10,13 +10,13 @@ alwaysApply: false
 ### Day 1-2: Database Configuration
 - [ ] **Set up PostgreSQL database**
   - [ ] Install PostgreSQL locally or set up cloud instance (Supabase/Neon)
-  - [ ] Create database named `marketing-new`
+  - [ ] Create database named `marketing`
   - [ ] Configure database user with appropriate permissions
   - [ ] Test database connection
 
 - [ ] **Environment Variables Setup**
   - [ ] Create `.env.local` file in project root
-  - [ ] Add database URL: `DATABASE_URL=postgresql://tusharjain:admin@localhost:5432/marketing-new`
+  - [ ] Add database URL: `DATABASE_URL=postgresql://<username>:<password>@localhost:5432/marketing`
   - [ ] Add NextAuth configuration variables
   - [ ] Add UploadThing API keys
   - [ ] Add Resend API key for emails

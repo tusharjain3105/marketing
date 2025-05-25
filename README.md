@@ -1,4 +1,4 @@
-# Marketing New - Next.js Application
+# Marketing - Next.js Application
 
 A modern marketing website built with Next.js 15, featuring a rich text editor, authentication, blog management, and email functionality. This project uses the latest Next.js experimental features and follows best practices for performance and developer experience.
 
@@ -42,7 +42,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 ## 📁 Project Structure
 
 ```
-marketing-new/
+marketing/
 ├── .husky/                     # Git hooks for code quality
 ├── actions/                    # Server actions for backend logic
 ├── app/                        # Next.js App Router directory
