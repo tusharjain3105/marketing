@@ -12,6 +12,7 @@ const nextConfig: NextConfig = {
     reactCompiler: true,
     ppr: true,
     dynamicIO: true,
+    useLightningcss: false,
   },
   compiler: {
     removeConsole:
